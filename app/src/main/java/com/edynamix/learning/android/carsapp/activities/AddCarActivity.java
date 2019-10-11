@@ -51,19 +51,49 @@ public class AddCarActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_car);
+
+        initCarsStorage();
         initViews();
     }
 
-    private void initViews() {
+    private void initCarsStorage() {
         carsStorage = CarsStorage.getInstance();
         carsStorage.updatePreferencesForActivity(this);
+    }
 
+    private void initViews() {
+        initAppToolbar();
+        initCarCounter();
+        initAddRemoveButtonsForRandomCars();
+        initCarPropertiesEditTexts();
+        initDateComponents();
+        initCreateNewCarButton();
+    }
+
+    private void initAppToolbar() {
         textViewEmailInAppBar = (TextView) findViewById(R.id.textViewLoggedInEmail);
         setEmailFromSharedPrefsInAppBar(textViewEmailInAppBar);
 
+        buttonBack = (Button) findViewById(R.id.buttonBack);
+        buttonBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AddCarActivity.this.finish();
+            }
+        });
+    }
+
+    private void initCarCounter() {
         textViewCarsCount = (TextView) findViewById(R.id.textViewCarsCount);
         updateViewForCarsCount();
+    }
 
+    private void initAddRemoveButtonsForRandomCars() {
+        initAddRandomCarsButton();
+        initDeleteRandomCarButton();
+    }
+
+    private void initAddRandomCarsButton() {
         buttonAddRandomCars = (Button) findViewById(R.id.buttonAddRandomCars);
         buttonAddRandomCars.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -72,7 +102,9 @@ public class AddCarActivity extends Activity {
                 updateViewForCarsCount();
             }
         });
+    }
 
+    private void initDeleteRandomCarButton() {
         buttonDeleteRandomCar = (Button) findViewById(R.id.buttonDeleteRandomCar);
         buttonDeleteRandomCar.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -82,15 +114,24 @@ public class AddCarActivity extends Activity {
             }
         });
         updateVisibilityOfDeleteButton();
+    }
 
+    private void initCarPropertiesEditTexts() {
         editTextBrand = (EditText) findViewById(R.id.editTextBrand);
         editTextModel = (EditText) findViewById(R.id.editTextModel);
         editTextColour = (EditText) findViewById(R.id.editTextColour);
         editTextDoorsCount = (EditText) findViewById(R.id.editTextDoorsCount);
+    }
 
+    private void initDateComponents() {
         textViewShowSelectedDateOfManufacture = (TextView) findViewById(R.id.textViewShowSelectedDateOfManufacture);
         displaySelectedDate(textViewShowSelectedDateOfManufacture, null);
 
+        initPickDateButton();
+        initDatePickerOnDateSetListener();
+    }
+
+    private void initPickDateButton() {
         buttonSelectDateOfManufacture = (Button) findViewById(R.id.buttonSelectDateOfManufacture);
         buttonSelectDateOfManufacture.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -98,7 +139,9 @@ public class AddCarActivity extends Activity {
                 showDatePickerDialog();
             }
         });
+    }
 
+    private void initDatePickerOnDateSetListener() {
         datePickerOnDateSetListener = new DatePickerDialog.OnDateSetListener() {
             @Override
             public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
@@ -109,21 +152,15 @@ public class AddCarActivity extends Activity {
                 displaySelectedDate(textViewShowSelectedDateOfManufacture, date);
             }
         };
+    }
 
+    private void initCreateNewCarButton() {
         buttonCreateNewCar = (Button) findViewById(R.id.buttonCreateNewCar);
         buttonCreateNewCar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 addCarToStorage();
                 Toast.makeText(AddCarActivity.this, "The car was saved successfully.", Toast.LENGTH_LONG).show();
-            }
-        });
-
-        buttonBack = (Button) findViewById(R.id.buttonBack);
-        buttonBack.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                AddCarActivity.this.finish();
             }
         });
     }
