@@ -37,7 +37,7 @@
             android:layout_height="wrap_content"
             android:text="@string/login"
             android:background="@color/colorTeal"
-            android:layout_marginTop="15dp"/>
+            android:layout_marginTop="15dp" />
 
     </LinearLayout>
 

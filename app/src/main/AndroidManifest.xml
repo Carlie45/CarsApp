@@ -12,7 +12,8 @@
         <activity
             android:name=".activities.AddCarActivity"
             android:label="@string/title_activity_add_car"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:parentActivityName=".activities.LoginActivity">
+        </activity>
         <activity android:name=".activities.LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

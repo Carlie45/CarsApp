@@ -3,11 +3,42 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_marginTop="50dp"
     tools:context="com.edynamix.learning.android.carsapp.activities.AddCarActivity">
 
-    <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    <TextView
+        android:id="@+id/textViewCarsCount"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        android:text="@string/cars_count"
+        android:textSize="18dp"/>
+
+    <LinearLayout
+        android:id="@+id/randomButtonsLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/textViewCarsCount"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/buttonAddRandomCars"
+            style="@style/RandomCarButton"
+            android:text="@string/add_random_cars_button_name"/>
+        <Button
+            android:id="@+id/buttonDeleteRandomCar"
+            style="@style/RandomCarButton"
+            android:text="@string/delete_random_car_button_name"
+            android:visibility="invisible"/>
+
+    </LinearLayout>
+
+
+    <ScrollView
+        android:id="@+id/scrollViewAddCar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/randomButtonsLayout"
         android:fillViewport="false">
 
         <LinearLayout
@@ -16,15 +47,78 @@
             android:orientation="vertical">
 
             <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="24dp"
+                android:text="@string/add_car_title"
+                android:textStyle="bold"
+                android:textColor="@color/colorBlack"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:layout_marginLeft="8dp"/>
+
+            <TextView
+                android:id="@+id/textViewBrand"
+                style="@style/AddCar"
+                android:text="@string/brand_label"/>
+
+            <EditText
+                android:id="@+id/editTextBrand"
+                style="@style/AddCar.AddCarEditText" />
+
+            <TextView
+                android:id="@+id/textViewModel"
+                style="@style/AddCar"
+                android:text="@string/model_label"/>
+
+            <EditText
+                android:id="@+id/editTextModel"
+                style="@style/AddCar.AddCarEditText" />
+
+            <TextView
+                android:id="@+id/textViewColour"
+                style="@style/AddCar"
+                android:text="@string/colour_label"/>
+
+            <EditText
+                android:id="@+id/editTextColour"
+                style="@style/AddCar.AddCarEditText" />
+
+            <TextView
+                android:id="@+id/textViewDoorsCount"
+                style="@style/AddCar"
+                android:text="@string/doors_count_label"/>
+
+            <EditText
+                android:id="@+id/editTextDoorsCount"
+                style="@style/AddCar.AddCarEditText"
+                android:inputType="number" />
+
+            <TextView
+                android:id="@+id/textViewDateOfManufacture"
+                style="@style/AddCar"
+                android:text="@string/date_of_manufacture_label"/>
+
+            <TextView
+                android:id="@+id/textViewShowSelectedDateOfManufacture"
+                style="@style/AddCar" />
+
+            <Button
+                android:id="@+id/buttonSelectDateOfManufacture"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="50dp"
-                android:text="@string/large_text"
-                android:textSize="24dp"/>
+                android:layout_margin="8dp"
+                android:padding="8dp"
+                android:text="@string/pick_date"
+                android:background="@color/colorGrey"/>
 
-
-
-
+            <Button
+                android:id="@+id/buttonCreateNewCar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:text="@string/create_new_car"
+                android:background="@color/colorLightBlue"/>
 
         </LinearLayout>
 

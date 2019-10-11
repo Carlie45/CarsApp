@@ -1,8 +1,6 @@
 package com.edynamix.learning.android.carsapp.activities;
 
 import android.app.Activity;
-import android.app.AlertDialog;
-import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -15,7 +13,6 @@ import android.widget.EditText;
 import com.edynamix.learning.android.carsapp.R;
 import com.edynamix.learning.android.carsapp.exceptions.IllegalCredentialsException;
 import com.edynamix.learning.android.carsapp.utils.Constants;
-import com.edynamix.learning.android.carsapp.utils.ErrorDialogCreator;
 import com.edynamix.learning.android.carsapp.utils.LoginDataValidator;
 
 public class LoginActivity extends Activity {
@@ -39,21 +36,21 @@ public class LoginActivity extends Activity {
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                try {
-                    Editable emailTextFromInput = editTextEmail.getText();
-                    Editable passwordTextFromInput = editTextPassword.getText();
-
-                    checkCredentials(emailTextFromInput, passwordTextFromInput);
-                    // We have already verified the entered credentials, so we can use them as strings.
-                    String email = emailTextFromInput.toString();
-                    String password = passwordTextFromInput.toString();
-
-                    saveCredentialsToSharedPreferences(email, password);
+//                try {
+//                    Editable emailTextFromInput = editTextEmail.getText();
+//                    Editable passwordTextFromInput = editTextPassword.getText();
+//
+//                    checkCredentials(emailTextFromInput, passwordTextFromInput);
+//                    // We have already verified the entered credentials, so we can use them as strings.
+//                    String email = emailTextFromInput.toString();
+//                    String password = passwordTextFromInput.toString();
+//
+//                    saveCredentialsToSharedPreferences(email, password);
                     navigateToAddCarActivity();
-                } catch (IllegalCredentialsException ice) {
-                    AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(LoginActivity.this);
-                    ErrorDialogCreator.createDialog(alertDialogBuilder, ice.getMessage());
-                }
+//                } catch (IllegalCredentialsException ice) {
+//                    AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(LoginActivity.this);
+//                    ErrorDialogCreator.createDialog(alertDialogBuilder, ice.getMessage());
+//                }
             }
         });
     }
