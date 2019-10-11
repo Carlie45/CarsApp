@@ -3,6 +3,8 @@ package com.edynamix.learning.android.carsapp.utils;
 public interface Constants {
 
     public static final String EMPTY_VALUE = "";
+    public static final String CARS_COUNT_TEXT = "Cars count: ";
+    public static final String SHARED_PREFERENCES_JSON_KEY = "cars";
 
     // Colors
     public static final String COLOR_GREY = "#eceff1";

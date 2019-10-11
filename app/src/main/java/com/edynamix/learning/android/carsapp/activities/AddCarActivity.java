@@ -1,10 +1,8 @@
 package com.edynamix.learning.android.carsapp.activities;
 
-import android.app.ActionBar;
 import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.content.SharedPreferences;
-import android.drm.DrmStore;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
@@ -28,15 +26,17 @@ import java.util.Random;
 
 public class AddCarActivity extends Activity {
 
-    private final String CARS_COUNT_TEXT = "Cars count: ";
+    private CarsStorage carsStorage;
 
     private Button buttonBack;
-    private TextView emailTextViewInAppBar;
-
-    private TextView textViewCarsCount;
-
     private Button buttonAddRandomCars;
     private Button buttonDeleteRandomCar;
+    private Button buttonSelectDateOfManufacture;
+    private Button buttonCreateNewCar;
+
+    private TextView textViewEmailInAppBar;
+    private TextView textViewCarsCount;
+    private TextView textViewShowSelectedDateOfManufacture;
 
     private EditText editTextBrand;
     private EditText editTextModel;
@@ -45,11 +45,7 @@ public class AddCarActivity extends Activity {
 
     private Date dateOfManufacture;
 
-    private TextView textViewShowSelectedDateOfManufacture;
-    private Button selectDateOfManufactureButton;
-    private DatePickerDialog.OnDateSetListener dateSetListener;
-
-    private Button createNewCarButton;
+    private DatePickerDialog.OnDateSetListener datePickerOnDateSetListener;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,8 +55,11 @@ public class AddCarActivity extends Activity {
     }
 
     private void initViews() {
-        emailTextViewInAppBar = (TextView) findViewById(R.id.textViewLoggedInEmail);
-        setEmailFromSharedPrefsInAppBar(emailTextViewInAppBar);
+        carsStorage = CarsStorage.getInstance();
+        carsStorage.updatePreferencesForActivity(this);
+
+        textViewEmailInAppBar = (TextView) findViewById(R.id.textViewLoggedInEmail);
+        setEmailFromSharedPrefsInAppBar(textViewEmailInAppBar);
 
         textViewCarsCount = (TextView) findViewById(R.id.textViewCarsCount);
         updateViewForCarsCount();
@@ -82,6 +81,7 @@ public class AddCarActivity extends Activity {
                 updateViewForCarsCount();
             }
         });
+        updateVisibilityOfDeleteButton();
 
         editTextBrand = (EditText) findViewById(R.id.editTextBrand);
         editTextModel = (EditText) findViewById(R.id.editTextModel);
@@ -91,15 +91,15 @@ public class AddCarActivity extends Activity {
         textViewShowSelectedDateOfManufacture = (TextView) findViewById(R.id.textViewShowSelectedDateOfManufacture);
         displaySelectedDate(textViewShowSelectedDateOfManufacture, null);
 
-        selectDateOfManufactureButton = (Button) findViewById(R.id.buttonSelectDateOfManufacture);
-        selectDateOfManufactureButton.setOnClickListener(new View.OnClickListener() {
+        buttonSelectDateOfManufacture = (Button) findViewById(R.id.buttonSelectDateOfManufacture);
+        buttonSelectDateOfManufacture.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 showDatePickerDialog();
             }
         });
 
-        dateSetListener = new DatePickerDialog.OnDateSetListener() {
+        datePickerOnDateSetListener = new DatePickerDialog.OnDateSetListener() {
             @Override
             public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
                 String date = dayOfMonth + "/" + (month + 1) + "/" + year;
@@ -110,8 +110,8 @@ public class AddCarActivity extends Activity {
             }
         };
 
-        createNewCarButton = (Button) findViewById(R.id.buttonCreateNewCar);
-        createNewCarButton.setOnClickListener(new View.OnClickListener() {
+        buttonCreateNewCar = (Button) findViewById(R.id.buttonCreateNewCar);
+        buttonCreateNewCar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 addCarToStorage();
@@ -167,7 +167,7 @@ public class AddCarActivity extends Activity {
         Calendar calendar = Calendar.getInstance();
         DatePickerDialog datePickerDialog = new DatePickerDialog(
                 this,
-                dateSetListener,
+                datePickerOnDateSetListener,
                 calendar.get(Calendar.YEAR),
                 calendar.get(Calendar.MONTH),
                 calendar.get(Calendar.DAY_OF_MONTH));
@@ -178,7 +178,6 @@ public class AddCarActivity extends Activity {
     }
 
     private void addCarToStorage() {
-        CarsStorage carsStorage = CarsStorage.getInstance();
         String brand = editTextBrand.getText() != null ? editTextBrand.getText().toString() : null;
         String model = editTextModel.getText() != null ? editTextModel.getText().toString() : null;
         String colour = editTextColour.getText() != null ? editTextColour.getText().toString() : null;
@@ -209,7 +208,7 @@ public class AddCarActivity extends Activity {
     }
 
     private String getCarsCountText() {
-        return CARS_COUNT_TEXT + CarsStorage.getInstance().getCarsCount();
+        return Constants.CARS_COUNT_TEXT + carsStorage.getCarsCount();
     }
 
     private void displayToastWithGeneratedNumberOfCars(int countOfCarsGenerated) {
@@ -223,14 +222,12 @@ public class AddCarActivity extends Activity {
 
     private void addRandomCarToStorage() {
         Car randomCar = RandomCarGenerator.getRandomCar();
-        CarsStorage carsStorage = CarsStorage.getInstance();
         carsStorage.addCar(randomCar);
 
         updateVisibilityOfDeleteButton();
     }
 
     private void deleteRandomCar() {
-        CarsStorage carsStorage = CarsStorage.getInstance();
         int carsCount = carsStorage.getCarsCount();
         if (carsCount <= 0) {
             // Nothing to remove.
@@ -250,7 +247,7 @@ public class AddCarActivity extends Activity {
     }
 
     private void updateVisibilityOfDeleteButton() {
-        int carsCount = CarsStorage.getInstance().getCarsCount();
+        int carsCount = carsStorage.getCarsCount();
 
         if (carsCount == 0) {
             buttonDeleteRandomCar.setVisibility(View.INVISIBLE);

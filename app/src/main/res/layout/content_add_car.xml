@@ -28,8 +28,7 @@
         <Button
             android:id="@+id/buttonDeleteRandomCar"
             style="@style/RandomCarButton"
-            android:text="@string/delete_random_car_button_name"
-            android:visibility="invisible"/>
+            android:text="@string/delete_random_car_button_name" />
 
     </LinearLayout>
 
