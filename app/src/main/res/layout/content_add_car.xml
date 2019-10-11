@@ -19,19 +19,29 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/textViewCarsCount"
-        android:orientation="horizontal">
+        android:orientation="vertical">
 
         <Button
             android:id="@+id/buttonAddRandomCars"
             style="@style/RandomCarButton"
             android:text="@string/add_random_cars_button_name"/>
+
         <Button
             android:id="@+id/buttonDeleteRandomCar"
             style="@style/RandomCarButton"
             android:text="@string/delete_random_car_button_name" />
 
-    </LinearLayout>
+        <Button
+            android:id="@+id/buttonGoToLinearLayout"
+            style="@style/RandomCarButton"
+            android:text="@string/go_to_linear_layout"/>
 
+        <Button
+            android:id="@+id/buttonGoToListView"
+            style="@style/RandomCarButton"
+            android:text="@string/go_to_list_view"/>
+
+    </LinearLayout>
 
     <ScrollView
         android:id="@+id/scrollViewAddCar"

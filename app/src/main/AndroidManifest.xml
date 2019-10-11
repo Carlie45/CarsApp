@@ -10,10 +10,17 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
+            android:name=".activities.ListViewActivity"
+            android:label="@string/title_activity_list_view"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity
+            android:name=".activities.LinearLayoutActivity"
+            android:label="@string/title_activity_linear_layout"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
             android:name=".activities.AddCarActivity"
             android:label="@string/title_activity_add_car"
-            android:parentActivityName=".activities.LoginActivity">
-        </activity>
+            android:parentActivityName=".activities.LoginActivity" />
         <activity android:name=".activities.LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
