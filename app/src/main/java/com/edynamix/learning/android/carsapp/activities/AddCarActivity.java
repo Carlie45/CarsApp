@@ -125,7 +125,7 @@ public class AddCarActivity extends Activity {
 
     private void initDateComponents() {
         textViewShowSelectedDateOfManufacture = (TextView) findViewById(R.id.textViewShowSelectedDateOfManufacture);
-        displaySelectedDate(textViewShowSelectedDateOfManufacture, null);
+        displayCurrentDate(textViewShowSelectedDateOfManufacture);
 
         initPickDateButton();
         initDatePickerOnDateSetListener();
@@ -171,31 +171,27 @@ public class AddCarActivity extends Activity {
         textViewForEmail.setText(sharedPrefsEmail);
     }
 
-    /**
-     * If the passed date is null, then the current date will be displayed in the specified text view.
-     * @param textView - the view in which the date will be displayed
-     * @param dateAsString - the date that will be displayed in the specified text view
-     */
+    private void displayCurrentDate(TextView textView) {
+        StringBuilder formattedDate = new StringBuilder();
+        formattedDate.append("Selected Date: ");
+
+        Calendar calendar = Calendar.getInstance();
+        int dayOfMonth = calendar.get(Calendar.DAY_OF_MONTH);
+        int month = calendar.get(Calendar.MONTH) + 1;
+        int year = calendar.get(Calendar.YEAR);
+
+        formattedDate.append(dayOfMonth).append("/");
+        formattedDate.append(month).append( "/");
+        formattedDate.append(year);
+
+        dateOfManufacture = calendar.getTime();
+        textView.setText(formattedDate.toString());
+    }
+
     private void displaySelectedDate(TextView textView, String dateAsString) {
         StringBuilder formattedDate = new StringBuilder();
         formattedDate.append("Selected Date: ");
-        if (dateAsString == null) {
-            // Set the current date.
-            Calendar calendar = Calendar.getInstance();
-
-            int dayOfMonth = calendar.get(Calendar.DAY_OF_MONTH);
-            int month = calendar.get(Calendar.MONTH) + 1;
-            int year = calendar.get(Calendar.YEAR);
-
-            formattedDate.append(dayOfMonth).append("/");
-            formattedDate.append(month).append( "/");
-            formattedDate.append(year);
-
-            dateOfManufacture = calendar.getTime();
-
-        } else {
-            formattedDate.append(dateAsString);
-        }
+        formattedDate.append(dateAsString);
 
         textView.setText(formattedDate.toString());
     }
