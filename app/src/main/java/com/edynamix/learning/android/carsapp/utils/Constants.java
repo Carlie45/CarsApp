@@ -9,6 +9,8 @@ public interface Constants {
     // Login page error dialog related constants.
     public static final String ERROR_DIALOG_TITLE = "Error";
     public static final String ERROR_DIALOG_CLOSE_BUTTON_NAME = "Close";
+    public static final int    MAX_EMAIL_LENGTH = 50;
+    public static final int    MAX_PASSWORD_LENGTH = 30;
 
     // Shared preferences related constants.
     public static final String SHARED_PREFERENCES_EMAIL = "email";
