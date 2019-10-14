@@ -11,7 +11,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
-import android.widget.ListView;
+import android.widget.LinearLayout;
+import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -31,6 +32,7 @@ public class AddCarActivity extends Activity {
     private CarsStorage carsStorage;
 
     private Button buttonBack;
+    private Button buttonAddCar;
     private Button buttonGoToLinearLayout;
     private Button buttonGoToListView;
     private Button buttonAddRandomCars;
@@ -46,6 +48,9 @@ public class AddCarActivity extends Activity {
     private EditText editTextModel;
     private EditText editTextColour;
     private EditText editTextDoorsCount;
+
+    private LinearLayout linearLayoutButtons;
+    private ScrollView scrollViewAddCar;
 
     private Date dateOfManufacture;
 
@@ -68,8 +73,7 @@ public class AddCarActivity extends Activity {
     private void initViews() {
         initAppToolbar();
         initCarCounter();
-        initButtonsToOtherActivities();
-        initButtonsForRandomCars();
+        initButtons();
         initCarPropertiesEditTexts();
         initDateComponents();
         initCreateNewCarButton();
@@ -83,7 +87,7 @@ public class AddCarActivity extends Activity {
         buttonBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                AddCarActivity.this.finish();
+                finish();
             }
         });
     }
@@ -93,9 +97,30 @@ public class AddCarActivity extends Activity {
         updateViewForCarsCount();
     }
 
-    private void initButtonsToOtherActivities() {
+    private void initButtons() {
+        initAddCarButton();
+        initButtonsForRandomCars();
         initButtonToLinearLayout();
         initButtonToListView();
+        updateVisibilityOfGoToOtherViewsButtons();
+    }
+
+    private void initAddCarButton() {
+        buttonAddCar = (Button) findViewById(R.id.buttonAddCar);
+        buttonAddCar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                scrollViewAddCar = (ScrollView) findViewById(R.id.scrollViewAddCar);
+                scrollViewAddCar.setVisibility(View.VISIBLE);
+                linearLayoutButtons = (LinearLayout) findViewById(R.id.linearLayoutButtons);
+                linearLayoutButtons.setVisibility(View.GONE);
+            }
+        });
+    }
+
+    private void initButtonsForRandomCars() {
+        initAddRandomCarsButton();
+        initDeleteRandomCarButton();
     }
 
     private void initButtonToLinearLayout() {
@@ -107,7 +132,6 @@ public class AddCarActivity extends Activity {
                 startActivity(goToLinearLayoutIntent);
             }
         });
-        updateVisibilityOfGoToLinearLayoutButton();
     }
 
     private void initButtonToListView() {
@@ -119,12 +143,6 @@ public class AddCarActivity extends Activity {
                 startActivity(goToLinearLayoutIntent);
             }
         });
-        updateVisibilityOfGoToListViewButton();
-    }
-
-    private void initButtonsForRandomCars() {
-        initAddRandomCarsButton();
-        initDeleteRandomCarButton();
     }
 
     private void initAddRandomCarsButton() {
@@ -261,7 +279,7 @@ public class AddCarActivity extends Activity {
         carsStorage.addCar(newCar);
 
         updateViewForCarsCount();
-        updateButtonsVisibility();
+        updateVisibilityOfViewComponents();
     }
 
     private void generateRandomNumberOfCars() {
@@ -291,7 +309,7 @@ public class AddCarActivity extends Activity {
         Car randomCar = RandomCarGenerator.getRandomCar();
         carsStorage.addCar(randomCar);
 
-        updateButtonsVisibility();
+        updateVisibilityOfViewComponents();
     }
 
     private void deleteRandomCar() {
@@ -306,45 +324,45 @@ public class AddCarActivity extends Activity {
         int carIndex = rand.nextInt(carsStorage.getCarsCount());
         carsStorage.deleteCar(carIndex);
 
-        updateButtonsVisibility();
+        updateVisibilityOfViewComponents();
     }
 
     private void updateViewForCarsCount() {
         textViewCarsCount.setText(getCarsCountText());
     }
 
-    private void updateButtonsVisibility() {
+    private void updateVisibilityOfViewComponents() {
+        showButtonsLayout();
+        hideScrollView();
         updateVisibilityOfDeleteButton();
-        updateVisibilityOfGoToLinearLayoutButton();
-        updateVisibilityOfGoToListViewButton();
+        updateVisibilityOfGoToOtherViewsButtons();
+    }
+
+    private void showButtonsLayout() {
+        linearLayoutButtons.setVisibility(View.VISIBLE);
+    }
+
+    private void hideScrollView() {
+        scrollViewAddCar.setVisibility(View.GONE);
     }
 
     private void updateVisibilityOfDeleteButton() {
         int carsCount = carsStorage.getCarsCount();
 
         if (carsCount == 0) {
-            buttonDeleteRandomCar.setVisibility(View.INVISIBLE);
+            buttonDeleteRandomCar.setVisibility(View.GONE);
         } else {
             buttonDeleteRandomCar.setVisibility(View.VISIBLE);
         }
     }
 
-    private void updateVisibilityOfGoToLinearLayoutButton() {
+    private void updateVisibilityOfGoToOtherViewsButtons() {
         int carsCount = carsStorage.getCarsCount();
-
         if (carsCount < 10) {
-            buttonGoToLinearLayout.setVisibility(View.INVISIBLE);
+            buttonGoToLinearLayout.setVisibility(View.GONE);
+            buttonGoToListView.setVisibility(View.GONE);
         } else {
             buttonGoToLinearLayout.setVisibility(View.VISIBLE);
-        }
-    }
-
-    private void updateVisibilityOfGoToListViewButton() {
-        int carsCount = carsStorage.getCarsCount();
-
-        if (carsCount < 10) {
-            buttonGoToListView.setVisibility(View.INVISIBLE);
-        } else {
             buttonGoToListView.setVisibility(View.VISIBLE);
         }
     }

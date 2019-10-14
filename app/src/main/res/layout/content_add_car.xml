@@ -15,11 +15,16 @@
         android:textSize="18dp"/>
 
     <LinearLayout
-        android:id="@+id/randomButtonsLayout"
+        android:id="@+id/linearLayoutButtons"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/textViewCarsCount"
         android:orientation="vertical">
+
+        <Button
+            android:id="@+id/buttonAddCar"
+            style="@style/RandomCarButton"
+            android:text="@string/add_car_button_name"/>
 
         <Button
             android:id="@+id/buttonAddRandomCars"
@@ -47,7 +52,8 @@
         android:id="@+id/scrollViewAddCar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/randomButtonsLayout"
+        android:layout_below="@id/linearLayoutButtons"
+        android:visibility="gone"
         android:fillViewport="false">
 
         <LinearLayout
