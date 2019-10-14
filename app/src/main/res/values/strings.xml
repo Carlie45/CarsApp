@@ -12,7 +12,7 @@
     <string name="colour_label">Colour</string>
     <string name="doors_count_label">Doors Count</string>
     <string name="date_of_manufacture_label">Date of Manufacture</string>
-    <string name="pick_date">Pick Date</string>
+    <string name="pick_year">Pick Year</string>
     <string name="create_new_car">Create New Car</string>
     <string name="add_car_button_name">Add Car</string>
     <string name="add_random_cars_button_name">Add Random Cars</string>

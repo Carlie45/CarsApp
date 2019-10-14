@@ -17,20 +17,14 @@ public class RandomCarGenerator {
         int modelIndex = rand.nextInt(MODELS.length);
         int colourIndex = rand.nextInt(COLOURS.length);
         int doorsCount = rand.nextInt(6);
-
         int year = 1980 + rand.nextInt(39);
-        int month = rand.nextInt(12);
-        int dayOfMonth = rand.nextInt(29);
-        Calendar calendar = Calendar.getInstance();
-        calendar.set(year, month + 1, dayOfMonth);
-        Date dateOfManufacture = calendar.getTime();
 
         Car randomCar = new CarBuilder()
                 .setBrand(BRANDS[brandIndex])
                 .setModel(MODELS[modelIndex])
                 .setColour(COLOURS[colourIndex])
                 .setDoorsCount(doorsCount)
-                .setDateOfManufacture(dateOfManufacture)
+                .setYearOfManufacture(year)
                 .build();
 
         return randomCar;

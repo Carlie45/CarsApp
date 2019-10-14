@@ -8,7 +8,7 @@ public class CarBuilder {
     private String model;
     private String colour;
     private int doorsCount;
-    private Date dateOfManufacture;
+    private int yearOfManufacture;
 
     public CarBuilder() { }
 
@@ -32,12 +32,12 @@ public class CarBuilder {
         return this;
     }
 
-    public CarBuilder setDateOfManufacture(Date dateOfManufacture) {
-        this.dateOfManufacture = dateOfManufacture;
+    public CarBuilder setYearOfManufacture(int yearOfManufacture) {
+        this.yearOfManufacture = yearOfManufacture;
         return this;
     }
 
     public Car build() {
-        return new Car(brand, model, colour, doorsCount, dateOfManufacture);
+        return new Car(brand, model, colour, doorsCount, yearOfManufacture);
     }
 }

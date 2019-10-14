@@ -1,17 +1,16 @@
 package com.edynamix.learning.android.carsapp.activities;
 
 import android.app.Activity;
-import android.app.DatePickerDialog;
+import android.app.Dialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.view.View;
 import android.widget.Button;
-import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.NumberPicker;
 import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -24,7 +23,6 @@ import com.edynamix.learning.android.carsapp.RandomCarGenerator;
 import com.edynamix.learning.android.carsapp.utils.Constants;
 
 import java.util.Calendar;
-import java.util.Date;
 import java.util.Random;
 
 public class AddCarActivity extends Activity {
@@ -34,7 +32,6 @@ public class AddCarActivity extends Activity {
     private Button buttonBack;
     private Button buttonAddCar;
     private Button buttonGoToLinearLayout;
-    private Button buttonGoToListView;
     private Button buttonAddRandomCars;
     private Button buttonDeleteRandomCar;
     private Button buttonSelectDateOfManufacture;
@@ -42,7 +39,7 @@ public class AddCarActivity extends Activity {
 
     private TextView textViewEmailInAppBar;
     private TextView textViewCarsCount;
-    private TextView textViewShowSelectedDateOfManufacture;
+    private TextView textViewShowSelectedYearOfManufacture;
 
     private EditText editTextBrand;
     private EditText editTextModel;
@@ -52,9 +49,8 @@ public class AddCarActivity extends Activity {
     private LinearLayout linearLayoutButtons;
     private ScrollView scrollViewAddCar;
 
-    private Date dateOfManufacture;
-
-    private DatePickerDialog.OnDateSetListener datePickerOnDateSetListener;
+    private int yearOfManufacture;
+    private Dialog dialogYearPicker;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -104,8 +100,7 @@ public class AddCarActivity extends Activity {
         initAddCarButton();
         initButtonsForRandomCars();
         initButtonToLinearLayout();
-        initButtonToListView();
-        updateVisibilityOfGoToOtherViewsButtons();
+        updateVisibilityOfGoToLinearLayoutButton();
     }
 
     private void initAddCarButton() {
@@ -130,17 +125,6 @@ public class AddCarActivity extends Activity {
             @Override
             public void onClick(View v) {
                 Intent goToLinearLayoutIntent = new Intent(AddCarActivity.this, LinearLayoutActivity.class);
-                startActivity(goToLinearLayoutIntent);
-            }
-        });
-    }
-
-    private void initButtonToListView() {
-        buttonGoToListView = (Button) findViewById(R.id.buttonGoToListView);
-        buttonGoToListView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent goToLinearLayoutIntent = new Intent(AddCarActivity.this, ListViewActivity.class);
                 startActivity(goToLinearLayoutIntent);
             }
         });
@@ -177,34 +161,21 @@ public class AddCarActivity extends Activity {
     }
 
     private void initDateComponents() {
-        textViewShowSelectedDateOfManufacture = (TextView) findViewById(R.id.textViewShowSelectedDateOfManufacture);
-        displayCurrentDate(textViewShowSelectedDateOfManufacture);
+        textViewShowSelectedYearOfManufacture = (TextView) findViewById(R.id.textViewShowSelectedDateOfManufacture);
+        displayCurrentYear(textViewShowSelectedYearOfManufacture);
 
         initPickDateButton();
-        initDatePickerOnDateSetListener();
+        initDialogYearPicker();
     }
 
     private void initPickDateButton() {
-        buttonSelectDateOfManufacture = (Button) findViewById(R.id.buttonSelectDateOfManufacture);
+        buttonSelectDateOfManufacture = (Button) findViewById(R.id.buttonSelectYearOfManufacture);
         buttonSelectDateOfManufacture.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 showDatePickerDialog();
             }
         });
-    }
-
-    private void initDatePickerOnDateSetListener() {
-        datePickerOnDateSetListener = new DatePickerDialog.OnDateSetListener() {
-            @Override
-            public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-                String date = dayOfMonth + "/" + (month + 1) + "/" + year;
-                Calendar calendar = Calendar.getInstance();
-                calendar.set(year, month,dayOfMonth);
-                dateOfManufacture = calendar.getTime();
-                displaySelectedDate(textViewShowSelectedDateOfManufacture, date);
-            }
-        };
     }
 
     private void initCreateNewCarButton() {
@@ -218,30 +189,61 @@ public class AddCarActivity extends Activity {
         });
     }
 
+    private void initDialogYearPicker() {
+        Calendar calendar = Calendar.getInstance();
+        int year = calendar.get(Calendar.YEAR);
+
+        final Dialog dialogYearPicker = new Dialog(AddCarActivity.this);
+        dialogYearPicker.setContentView(R.layout.year_picker_dialog);
+        Button buttonYearPickerSelect = (Button) dialogYearPicker.findViewById(R.id.buttonYearPickerSelect);
+        Button buttonYearPickerCancel = (Button) dialogYearPicker.findViewById(R.id.buttonYearPickerCancel);
+
+        final NumberPicker numberPickerYear = (NumberPicker) dialogYearPicker.findViewById(R.id.numberPickerYear);
+        numberPickerYear.setMaxValue(year);
+        numberPickerYear.setMinValue(year - 50);
+        numberPickerYear.setValue(year);
+        numberPickerYear.setWrapSelectorWheel(false);
+        numberPickerYear.setOnValueChangedListener(new NumberPicker.OnValueChangeListener() {
+            @Override
+            public void onValueChange(NumberPicker picker, int oldVal, int newVal) {
+                yearOfManufacture = newVal;
+                displaySelectedYear(textViewShowSelectedYearOfManufacture, String.valueOf(newVal));
+            }
+        });
+        buttonYearPickerSelect.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialogYearPicker.dismiss();
+            }
+        });
+        buttonYearPickerCancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialogYearPicker.dismiss();
+            }
+        });
+        this.dialogYearPicker = dialogYearPicker;
+    }
+
     private void setEmailFromSharedPrefsInAppBar(TextView textViewForEmail) {
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
         String sharedPrefsEmail = sharedPreferences.getString(Constants.SHARED_PREFERENCES_EMAIL, Constants.EMPTY_VALUE);
         textViewForEmail.setText(sharedPrefsEmail);
     }
 
-    private void displayCurrentDate(TextView textView) {
+    private void displayCurrentYear(TextView textView) {
         StringBuilder formattedDate = new StringBuilder();
-        formattedDate.append("Selected Date: ");
+        formattedDate.append("Selected Year: ");
 
         Calendar calendar = Calendar.getInstance();
-        int dayOfMonth = calendar.get(Calendar.DAY_OF_MONTH);
-        int month = calendar.get(Calendar.MONTH) + 1;
         int year = calendar.get(Calendar.YEAR);
-
-        formattedDate.append(dayOfMonth).append("/");
-        formattedDate.append(month).append( "/");
         formattedDate.append(year);
 
-        dateOfManufacture = calendar.getTime();
+        yearOfManufacture = year;
         textView.setText(formattedDate.toString());
     }
 
-    private void displaySelectedDate(TextView textView, String dateAsString) {
+    private void displaySelectedYear(TextView textView, String dateAsString) {
         StringBuilder formattedDate = new StringBuilder();
         formattedDate.append("Selected Date: ");
         formattedDate.append(dateAsString);
@@ -250,17 +252,7 @@ public class AddCarActivity extends Activity {
     }
 
     private void showDatePickerDialog() {
-        Calendar calendar = Calendar.getInstance();
-        DatePickerDialog datePickerDialog = new DatePickerDialog(
-                this,
-                datePickerOnDateSetListener,
-                calendar.get(Calendar.YEAR),
-                calendar.get(Calendar.MONTH),
-                calendar.get(Calendar.DAY_OF_MONTH));
-        datePickerDialog.show();
-
-        Button positiveDatePickerButton = datePickerDialog.getButton(DatePickerDialog.BUTTON_POSITIVE);
-        positiveDatePickerButton.setBackgroundColor(Color.parseColor(Constants.COLOR_TEAL));
+        dialogYearPicker.show();
     }
 
     private void addCarToStorage() {
@@ -275,7 +267,7 @@ public class AddCarActivity extends Activity {
                 .setModel(model)
                 .setColour(colour)
                 .setDoorsCount(doorsCount)
-                .setDateOfManufacture(dateOfManufacture)
+                .setYearOfManufacture(yearOfManufacture)
                 .build();
         carsStorage.addCar(newCar);
 
@@ -336,7 +328,7 @@ public class AddCarActivity extends Activity {
         showButtonsLayout();
         hideScrollView();
         updateVisibilityOfDeleteButton();
-        updateVisibilityOfGoToOtherViewsButtons();
+        updateVisibilityOfGoToLinearLayoutButton();
     }
 
     private void showButtonsLayout() {
@@ -357,14 +349,12 @@ public class AddCarActivity extends Activity {
         }
     }
 
-    private void updateVisibilityOfGoToOtherViewsButtons() {
+    private void updateVisibilityOfGoToLinearLayoutButton() {
         int carsCount = carsStorage.getCarsCount();
         if (carsCount < 10) {
             buttonGoToLinearLayout.setVisibility(View.GONE);
-            buttonGoToListView.setVisibility(View.GONE);
         } else {
             buttonGoToLinearLayout.setVisibility(View.VISIBLE);
-            buttonGoToListView.setVisibility(View.VISIBLE);
         }
     }
 }

@@ -70,11 +70,6 @@
             style="@style/RandomCarButton"
             android:text="@string/go_to_linear_layout"/>
 
-        <Button
-            android:id="@+id/buttonGoToListView"
-            style="@style/RandomCarButton"
-            android:text="@string/go_to_list_view"/>
-
     </LinearLayout>
 
     <ScrollView
@@ -148,12 +143,12 @@
                 style="@style/AddCar" />
 
             <Button
-                android:id="@+id/buttonSelectDateOfManufacture"
+                android:id="@+id/buttonSelectYearOfManufacture"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="8dp"
                 android:padding="8dp"
-                android:text="@string/pick_date"
+                android:text="@string/pick_year"
                 android:background="@color/colorGrey"/>
 
             <Button

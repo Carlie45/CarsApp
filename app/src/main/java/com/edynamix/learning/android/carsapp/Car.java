@@ -8,14 +8,14 @@ public class Car {
     private String model;
     private String colour;
     private int doorsCount;
-    private Date dateOfManufacture;
+    private int yearOfManufacture;
 
-    public Car(String brand, String model, String colour, int doorsCount, Date dateOfManufacture) {
+    public Car(String brand, String model, String colour, int doorsCount, int  yearOfManufacture) {
         this.brand = brand;
         this.model = model;
         this.colour = colour;
         this.doorsCount = doorsCount;
-        this.dateOfManufacture = dateOfManufacture;
+        this.yearOfManufacture = yearOfManufacture;
     }
 
     public String getBrand() {
@@ -50,12 +50,12 @@ public class Car {
         this.doorsCount = doorsCount;
     }
 
-    public Date getDateOfManufacture() {
-        return dateOfManufacture;
+    public int getYearOfManufacture() {
+        return yearOfManufacture;
     }
 
-    public void setDateOfManufacture(Date dateOfManufacture) {
-        this.dateOfManufacture = dateOfManufacture;
+    public void setDateOfManufacture(int yearOfManufacture) {
+        this.yearOfManufacture = yearOfManufacture;
     }
 
     @Override
@@ -65,7 +65,7 @@ public class Car {
                 ", model='" + model + '\'' +
                 ", colour='" + colour + '\'' +
                 ", doorsCount=" + doorsCount +
-                ", dateOfManufacture=" + dateOfManufacture +
+                ", yearOfManufacture=" + yearOfManufacture +
                 '}';
     }
 }
