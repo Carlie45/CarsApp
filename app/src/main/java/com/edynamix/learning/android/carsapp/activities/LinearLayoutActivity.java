@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.Dialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.view.View;
@@ -32,6 +33,7 @@ public class LinearLayoutActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
         setContentView(R.layout.activity_linear_layout);
 
         initViews();
@@ -98,6 +100,7 @@ public class LinearLayoutActivity extends Activity {
         final Dialog dialogShowYearOfManufacture = new Dialog(LinearLayoutActivity.this);
         dialogShowYearOfManufacture.setContentView(R.layout.display_year_of_manufacture_dialog);
         this.dialogShowYearOfManufacture = dialogShowYearOfManufacture;
+        this.dialogShowYearOfManufacture.setTitle("Year of Manufacture");
 
         initButtonShowYearInDialog();
     }

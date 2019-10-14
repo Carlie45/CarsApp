@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.Dialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.view.View;
@@ -55,6 +56,7 @@ public class AddCarActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
         setContentView(R.layout.activity_add_car);
 
         initCarsStorage();
@@ -197,6 +199,7 @@ public class AddCarActivity extends Activity {
     private void initDialogYearPicker() {
         final Dialog dialogYearPicker = new Dialog(AddCarActivity.this);
         dialogYearPicker.setContentView(R.layout.year_picker_dialog);
+        dialogYearPicker.setTitle("Select year of manufacture");
 
         final NumberPicker numberPickerYear = (NumberPicker) dialogYearPicker.findViewById(R.id.numberPickerYear);
         Calendar calendar = Calendar.getInstance();

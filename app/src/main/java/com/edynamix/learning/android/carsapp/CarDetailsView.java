@@ -15,7 +15,7 @@ public class CarDetailsView extends LinearLayout {
         inflater.inflate(R.layout.car_details, this, true);
 
         TextView textViewBrandAndModel = (TextView) findViewById(R.id.textViewBrandAndModel);
-        textViewBrandAndModel.setText(car.getBrand() + " " + car.getModel());
+        textViewBrandAndModel.setText("Brand and model: " + car.getBrand() + " " + car.getModel());
 
         TextView textViewColour = (TextView) findViewById(R.id.textViewColour);
         textViewColour.setText("Colour: " + car.getColour());

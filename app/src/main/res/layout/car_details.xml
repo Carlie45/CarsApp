@@ -9,6 +9,7 @@
         android:id="@+id/textViewBrandAndModel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_margin="5dp"
         android:textSize="20dp"
         android:textColor="@color/colorBlack"/>
 
@@ -16,6 +17,7 @@
         android:id="@+id/textViewColour"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_margin="5dp"
         android:textSize="18dp"
         android:textColor="@color/colorDarkGrey"/>
 
@@ -23,6 +25,7 @@
         android:id="@+id/textViewDoorsCount"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_margin="5dp"
         android:textSize="16dp"
         android:textColor="@color/colorDarkBlue"/>
 
