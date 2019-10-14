@@ -23,7 +23,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:layout_alignParentLeft="true"
-            android:text="Cancel" />
+            android:text="@string/cancel_button_name" />
 
         <Button
             android:id="@+id/buttonYearPickerSelect"
@@ -31,7 +31,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:layout_alignParentRight="true"
-            android:text="Select" />
+            android:text="@string/select_button_name" />
 
     </LinearLayout>
 

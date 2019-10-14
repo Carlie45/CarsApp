@@ -295,7 +295,7 @@ public class AddCarActivity extends Activity {
     }
 
     private String getCarsCountText() {
-        return Constants.CARS_COUNT_TEXT + carsStorage.getCarsCount();
+        return getResources().getString(R.string.cars_count) + carsStorage.getCarsCount();
     }
 
     private void displayToastWithGeneratedNumberOfCars(int countOfCarsGenerated) {

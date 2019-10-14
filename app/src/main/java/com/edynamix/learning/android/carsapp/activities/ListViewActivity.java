@@ -86,7 +86,7 @@ public class ListViewActivity extends Activity {
         final Dialog dialogShowYearOfManufacture = new Dialog(ListViewActivity.this);
         dialogShowYearOfManufacture.setContentView(R.layout.display_year_of_manufacture_dialog);
         this.dialogShowYearOfManufacture = dialogShowYearOfManufacture;
-        this.dialogShowYearOfManufacture.setTitle("Year of Manufacture");
+        this.dialogShowYearOfManufacture.setTitle(R.string.year_of_manufacture);
 
         initButtonShowYearInDialog();
     }
@@ -105,7 +105,7 @@ public class ListViewActivity extends Activity {
         int carIndex = (int) view.getTag();
 
         TextView textViewYearOfManufacture = (TextView) dialogShowYearOfManufacture.findViewById(R.id.textViewDialogDisplayYearOfManufacture);
-        textViewYearOfManufacture.setText("Year: " + CarsStorage.carsList.get(carIndex).getYearOfManufacture());
+        textViewYearOfManufacture.setText(R.string.year + CarsStorage.carsList.get(carIndex).getYearOfManufacture());
 
         dialogShowYearOfManufacture.show();
     }

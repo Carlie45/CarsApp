@@ -1,7 +1,5 @@
 package com.edynamix.learning.android.carsapp;
 
-import java.util.Calendar;
-import java.util.Date;
 import java.util.Random;
 
 public class RandomCarGenerator {
