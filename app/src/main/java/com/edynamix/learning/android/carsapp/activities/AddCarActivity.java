@@ -98,6 +98,9 @@ public class AddCarActivity extends Activity {
     }
 
     private void initButtons() {
+        scrollViewAddCar = (ScrollView) findViewById(R.id.scrollViewAddCar);
+        linearLayoutButtons = (LinearLayout) findViewById(R.id.linearLayoutButtons);
+
         initAddCarButton();
         initButtonsForRandomCars();
         initButtonToLinearLayout();
@@ -110,9 +113,7 @@ public class AddCarActivity extends Activity {
         buttonAddCar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                scrollViewAddCar = (ScrollView) findViewById(R.id.scrollViewAddCar);
                 scrollViewAddCar.setVisibility(View.VISIBLE);
-                linearLayoutButtons = (LinearLayout) findViewById(R.id.linearLayoutButtons);
                 linearLayoutButtons.setVisibility(View.GONE);
             }
         });

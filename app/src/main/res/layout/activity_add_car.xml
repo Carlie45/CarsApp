@@ -6,7 +6,6 @@
     android:fitsSystemWindows="true"
     tools:context=".activities.AddCarActivity">
 
-    <include layout="@layout/app_toolbar_fragment" />
     <include layout="@layout/content_add_car" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

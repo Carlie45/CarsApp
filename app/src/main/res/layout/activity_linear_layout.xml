@@ -6,7 +6,6 @@
     android:layout_height="match_parent"
     tools:context=".activities.LinearLayoutActivity">
 
-    <include layout="@layout/app_toolbar_fragment" />
     <include layout="@layout/content_linear_layout" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
