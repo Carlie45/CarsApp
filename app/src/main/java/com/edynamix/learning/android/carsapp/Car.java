@@ -1,7 +1,5 @@
 package com.edynamix.learning.android.carsapp;
 
-import java.util.Date;
-
 public class Car {
 
     private String brand;

@@ -14,10 +14,9 @@ import java.util.List;
 
 public class CarsStorage {
 
-    private List<Car> carsList;
+    public static List<Car> carsList;
     private static CarsStorage instance;
     private Gson gson = new Gson();
-    private Activity activity;
     private static SharedPreferences sharedPreferences;
 
     private CarsStorage() {

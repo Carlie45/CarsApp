@@ -17,8 +17,8 @@
     <string name="add_car_button_name">Add Car</string>
     <string name="add_random_cars_button_name">Add Random Cars</string>
     <string name="delete_random_car_button_name">Delete Random Car</string>
-    <string name="go_to_linear_layout">Go To LinearLayout</string>
-    <string name="go_to_list_view">Go To ListView</string>
+    <string name="list_cars">List Cars</string>
     <string name="title_activity_linear_layout">LinearLayoutActivity</string>
     <string name="title_activity_list_view">ListViewActivity</string>
+    <string name="list_cars_alternatively">List Cars Alternatively</string>
 </resources>

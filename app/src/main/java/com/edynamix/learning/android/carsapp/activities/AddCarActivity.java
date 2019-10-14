@@ -69,6 +69,7 @@ public class AddCarActivity extends Activity {
     private void initViews() {
         initAppToolbar();
         initCarCounter();
+        initAddCarScrollView();
         initButtons();
         initCarPropertiesEditTexts();
         initDateComponents();
@@ -93,13 +94,18 @@ public class AddCarActivity extends Activity {
         updateViewForCarsCount();
     }
 
-    private void initButtons() {
+    private void initAddCarScrollView() {
         scrollViewAddCar = (ScrollView) findViewById(R.id.scrollViewAddCar);
+    }
+
+    private void initButtons() {
         linearLayoutButtons = (LinearLayout) findViewById(R.id.linearLayoutButtons);
 
         initAddCarButton();
-        initButtonsForRandomCars();
+        initAddRandomCarsButton();
+        initDeleteRandomCarButton();
         initButtonToLinearLayout();
+
         updateVisibilityOfGoToLinearLayoutButton();
     }
 
@@ -114,20 +120,19 @@ public class AddCarActivity extends Activity {
         });
     }
 
-    private void initButtonsForRandomCars() {
-        initAddRandomCarsButton();
-        initDeleteRandomCarButton();
-    }
-
     private void initButtonToLinearLayout() {
         buttonGoToLinearLayout = (Button) findViewById(R.id.buttonGoToLinearLayout);
         buttonGoToLinearLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent goToLinearLayoutIntent = new Intent(AddCarActivity.this, LinearLayoutActivity.class);
-                startActivity(goToLinearLayoutIntent);
+                navigateToLinearLayoutListCars();
             }
         });
+    }
+
+    private void navigateToLinearLayoutListCars() {
+        Intent goToLinearLayoutIntent = new Intent(AddCarActivity.this, LinearLayoutActivity.class);
+        startActivity(goToLinearLayoutIntent);
     }
 
     private void initAddRandomCarsButton() {
@@ -161,14 +166,14 @@ public class AddCarActivity extends Activity {
     }
 
     private void initDateComponents() {
-        textViewShowSelectedYearOfManufacture = (TextView) findViewById(R.id.textViewShowSelectedDateOfManufacture);
+        textViewShowSelectedYearOfManufacture = (TextView) findViewById(R.id.textViewShowSelectedYearOfManufacture);
         displayCurrentYear(textViewShowSelectedYearOfManufacture);
 
-        initPickDateButton();
+        initPickYearButton();
         initDialogYearPicker();
     }
 
-    private void initPickDateButton() {
+    private void initPickYearButton() {
         buttonSelectDateOfManufacture = (Button) findViewById(R.id.buttonSelectYearOfManufacture);
         buttonSelectDateOfManufacture.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -190,15 +195,12 @@ public class AddCarActivity extends Activity {
     }
 
     private void initDialogYearPicker() {
-        Calendar calendar = Calendar.getInstance();
-        int year = calendar.get(Calendar.YEAR);
-
         final Dialog dialogYearPicker = new Dialog(AddCarActivity.this);
         dialogYearPicker.setContentView(R.layout.year_picker_dialog);
-        Button buttonYearPickerSelect = (Button) dialogYearPicker.findViewById(R.id.buttonYearPickerSelect);
-        Button buttonYearPickerCancel = (Button) dialogYearPicker.findViewById(R.id.buttonYearPickerCancel);
 
         final NumberPicker numberPickerYear = (NumberPicker) dialogYearPicker.findViewById(R.id.numberPickerYear);
+        Calendar calendar = Calendar.getInstance();
+        int year = calendar.get(Calendar.YEAR);
         numberPickerYear.setMaxValue(year);
         numberPickerYear.setMinValue(year - 50);
         numberPickerYear.setValue(year);
@@ -210,19 +212,23 @@ public class AddCarActivity extends Activity {
                 displaySelectedYear(textViewShowSelectedYearOfManufacture, String.valueOf(newVal));
             }
         });
-        buttonYearPickerSelect.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                dialogYearPicker.dismiss();
-            }
-        });
-        buttonYearPickerCancel.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                dialogYearPicker.dismiss();
-            }
-        });
+
+        initDialogYearPickerButtons(dialogYearPicker);
         this.dialogYearPicker = dialogYearPicker;
+    }
+
+    private void initDialogYearPickerButtons(final Dialog dialogYearPicker) {
+        Button buttonYearPickerSelect = (Button) dialogYearPicker.findViewById(R.id.buttonYearPickerSelect);
+        Button buttonYearPickerCancel = (Button) dialogYearPicker.findViewById(R.id.buttonYearPickerCancel);
+        View.OnClickListener onClickDismissDialog = new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialogYearPicker.dismiss();
+            }
+        };
+
+        buttonYearPickerSelect.setOnClickListener(onClickDismissDialog);
+        buttonYearPickerCancel.setOnClickListener(onClickDismissDialog);
     }
 
     private void setEmailFromSharedPrefsInAppBar(TextView textViewForEmail) {
@@ -245,7 +251,7 @@ public class AddCarActivity extends Activity {
 
     private void displaySelectedYear(TextView textView, String dateAsString) {
         StringBuilder formattedDate = new StringBuilder();
-        formattedDate.append("Selected Date: ");
+        formattedDate.append("Selected Year: ");
         formattedDate.append(dateAsString);
 
         textView.setText(formattedDate.toString());
