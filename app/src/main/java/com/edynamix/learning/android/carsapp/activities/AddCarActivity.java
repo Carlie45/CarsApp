@@ -53,8 +53,8 @@ public class AddCarActivity extends Activity {
     private int yearOfManufacture;
     private Dialog dialogYearPicker;
 
-    private String CARS_COUNT;
-    private String NO_CARS_TO_REMOVE;
+    private String CARS_COUNT_LABEL;
+    private String NO_CARS_TO_REMOVE_MESSAGE;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,8 +68,8 @@ public class AddCarActivity extends Activity {
     }
 
     private void initStrings() {
-        CARS_COUNT = getResources().getString(R.string.cars_count);
-        NO_CARS_TO_REMOVE = getResources().getString(R.string.no_cars_to_remove);
+        CARS_COUNT_LABEL = getResources().getString(R.string.cars_count) + " ";
+        NO_CARS_TO_REMOVE_MESSAGE = getResources().getString(R.string.no_cars_to_remove);
     }
 
     private void initCarsStorage() {
@@ -253,7 +253,7 @@ public class AddCarActivity extends Activity {
 
     private void displayCurrentYear(TextView textView) {
         StringBuilder formattedDate = new StringBuilder();
-        final String SELECTED_YEAR = getResources().getString(R.string.selected_year);
+        final String SELECTED_YEAR = getResources().getString(R.string.selected_year) + " ";
         formattedDate.append(SELECTED_YEAR);
 
         Calendar calendar = Calendar.getInstance();
@@ -266,7 +266,7 @@ public class AddCarActivity extends Activity {
 
     private void displaySelectedYear(TextView textView, String dateAsString) {
         StringBuilder formattedDate = new StringBuilder();
-        final String SELECTED_YEAR = getResources().getString(R.string.selected_year);
+        final String SELECTED_YEAR = getResources().getString(R.string.selected_year) + " ";
         formattedDate.append(SELECTED_YEAR);
         formattedDate.append(dateAsString);
 
@@ -308,7 +308,7 @@ public class AddCarActivity extends Activity {
     }
 
     private String getCarsCountText() {
-        return CARS_COUNT + carsStorage.getCarsCount();
+        return CARS_COUNT_LABEL + carsStorage.getCarsCount();
     }
 
     private void displayToastWithGeneratedNumberOfCars(int countOfCarsGenerated) {
@@ -331,7 +331,7 @@ public class AddCarActivity extends Activity {
         int carsCount = carsStorage.getCarsCount();
         if (carsCount <= 0) {
             // Nothing to remove.
-            Toast.makeText(this, NO_CARS_TO_REMOVE, Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, NO_CARS_TO_REMOVE_MESSAGE, Toast.LENGTH_SHORT).show();
             return;
         }
 

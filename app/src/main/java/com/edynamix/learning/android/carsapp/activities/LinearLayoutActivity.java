@@ -43,7 +43,7 @@ public class LinearLayoutActivity extends Activity {
     }
 
     private void initStrings() {
-        YEAR_LABEL = getResources().getString(R.string.year);
+        YEAR_LABEL = getResources().getString(R.string.year) + " ";
     }
 
     private void initViews() {

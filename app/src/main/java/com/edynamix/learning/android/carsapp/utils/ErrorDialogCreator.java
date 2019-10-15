@@ -9,13 +9,24 @@ import com.edynamix.learning.android.carsapp.R;
 
 public class ErrorDialogCreator {
 
+    private static String loginErrorDialogTitle;
+    private static String closeButtonName;
+
     public static void createDialog(Resources resources, AlertDialog.Builder alertDialogBuilder, String errorMessage) {
-        alertDialogBuilder.setTitle(resources.getString(R.string.login_error_title));
+        if (loginErrorDialogTitle == null) {
+            loginErrorDialogTitle = resources.getString(R.string.login_error_title);
+        }
+
+        alertDialogBuilder.setTitle(loginErrorDialogTitle);
         alertDialogBuilder.setMessage(errorMessage);
         alertDialogBuilder.setCancelable(true);
 
+        if (closeButtonName == null) {
+            closeButtonName = resources.getString(R.string.close_button_name);
+        }
+
         alertDialogBuilder.setNegativeButton(
-                resources.getString(R.string.close_button_name),
+                closeButtonName,
                 new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
                         dialog.dismiss();

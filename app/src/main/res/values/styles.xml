@@ -7,6 +7,26 @@
         <item name="colorAccent">@color/colorWhite</item>
     </style>
 
+    <style name="ToolbarBackButton">
+        <item name="android:background">@drawable/icon_back_white</item>
+        <item name="android:layout_width">40dp</item>
+        <item name="android:layout_height">40dp</item>
+        <item name="android:layout_margin">5dp</item>
+    </style>
+
+    <style name="ToolbarEmailTextView">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_gravity">right</item>
+        <item name="android:layout_marginTop">10dp</item>
+        <item name="android:layout_marginRight">5dp</item>
+        <item name="android:layout_marginLeft">50dp</item>
+        <item name="android:ellipsize">end</item>
+        <item name="android:singleLine">true</item>
+        <item name="android:textColor">@color/colorWhite</item>
+        <item name="android:textSize">20dp</item>
+    </style>
+
     <style name="LoginEditText">
         <item name="android:layout_marginTop">5dp</item>
         <item name="android:width">250dp</item>

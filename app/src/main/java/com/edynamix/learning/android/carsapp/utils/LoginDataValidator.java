@@ -28,13 +28,13 @@ public class LoginDataValidator {
     }
 
     private void init() {
-        EMAIL_TOO_LONG_MESSAGE = resources.getString(R.string.email_too_long);
+        EMAIL_TOO_LONG_MESSAGE = resources.getString(R.string.email_too_long) + " ";
         EMAIL_NOT_VALID_MESSAGE = resources.getString(R.string.email_not_valid);
         PASSWORD_MUST_BE_AT_LEAST_TEN_CHARACTERS_LONG_MESSAGE = resources.getString(R.string.password_must_be_at_least_ten_characters_long);
-        PASSWORD_IS_TOO_LONG_MESSAGE = resources.getString(R.string.password_is_too_long);
-        PASSWORD_DOES_NOT_CONTAIN_DIGIT_MESSAGE = resources.getString(R.string.password_does_not_contain_digit);
-        PASSWORD_DOES_NOT_CONTAIN_LETTER_MESSAGE = resources.getString(R.string.password_does_not_contain_letter);
-        PASSWORD_DOES_NOT_CONTAIN_SPECIAL_CHARACTER_MESSAGE = resources.getString(R.string.password_does_not_contain_spec_char);
+        PASSWORD_IS_TOO_LONG_MESSAGE = resources.getString(R.string.password_is_too_long) + " ";
+        PASSWORD_DOES_NOT_CONTAIN_DIGIT_MESSAGE = resources.getString(R.string.password_does_not_contain_digit) + " ";
+        PASSWORD_DOES_NOT_CONTAIN_LETTER_MESSAGE = resources.getString(R.string.password_does_not_contain_letter) + " ";
+        PASSWORD_DOES_NOT_CONTAIN_SPECIAL_CHARACTER_MESSAGE = resources.getString(R.string.password_does_not_contain_spec_char) + " ";
     }
 
     /**
