@@ -17,11 +17,11 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.edynamix.learning.android.carsapp.App;
-import com.edynamix.learning.android.carsapp.Car;
-import com.edynamix.learning.android.carsapp.CarBuilder;
-import com.edynamix.learning.android.carsapp.CarsStorage;
+import com.edynamix.learning.android.carsapp.models.car.Car;
+import com.edynamix.learning.android.carsapp.models.car.CarBuilder;
+import com.edynamix.learning.android.carsapp.models.storage.CarsStorage;
 import com.edynamix.learning.android.carsapp.R;
-import com.edynamix.learning.android.carsapp.RandomCarGenerator;
+import com.edynamix.learning.android.carsapp.utils.RandomCarGenerator;
 import com.edynamix.learning.android.carsapp.utils.Constants;
 
 import java.util.Calendar;
@@ -31,25 +31,25 @@ public class AddCarActivity extends Activity {
 
     private CarsStorage carsStorage;
 
-    private Button buttonBack;
-    private Button buttonAddCar;
-    private Button buttonGoToLinearLayout;
-    private Button buttonAddRandomCars;
-    private Button buttonDeleteRandomCar;
-    private Button buttonSelectDateOfManufacture;
-    private Button buttonCreateNewCar;
+    private Button buttonAddCarBack;
+    private Button buttonAddCarAddCarFromInput;
+    private Button buttonAddCarGoToLinearLayout;
+    private Button buttonAddCarAddRandomCars;
+    private Button buttonAddCarDeleteRandomCar;
+    private Button buttonAddCarSelectYearOfManufacture;
+    private Button buttonAddCarCreateNewCar;
 
-    private TextView textViewEmailInAppBar;
-    private TextView textViewCarsCount;
-    private TextView textViewShowSelectedYearOfManufacture;
+    private TextView textViewAddCarLoggedInEmail;
+    private TextView textViewAddCarCarsCount;
+    private TextView textViewAddCarShowSelectedYearOfManufacture;
 
-    private EditText editTextBrand;
-    private EditText editTextModel;
-    private EditText editTextColour;
-    private EditText editTextDoorsCount;
+    private EditText editTextAddCarBrand;
+    private EditText editTextAddCarModel;
+    private EditText editTextAddCarColour;
+    private EditText editTextAddCarDoorsCount;
 
-    private LinearLayout linearLayoutButtons;
-    private ScrollView scrollViewAddCar;
+    private LinearLayout linearLayoutAddCarButtons;
+    private ScrollView scrollViewAddCarListInputFiledsForCar;
 
     private int yearOfManufacture;
     private Dialog dialogYearPicker;
@@ -57,6 +57,8 @@ public class AddCarActivity extends Activity {
     private static final String SELECTED_YEAR = App.getRes().getString(R.string.selected_year) + " ";
     private static final String CARS_COUNT_LABEL = App.getRes().getString(R.string.cars_count) + " ";
     private static final String NO_CARS_TO_REMOVE_MESSAGE = App.getRes().getString(R.string.no_cars_to_remove);
+    private static final String CAR_SAVED_SUCCESSFULLY_MESSAGE = App.getRes().getString(R.string.car_saved_successfully);
+    private static final String SELECT_YEAR_OF_MANUFACTURE_LABEL = App.getRes().getString(R.string.select_year_of_manufacture);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -84,11 +86,11 @@ public class AddCarActivity extends Activity {
     }
 
     private void initAppToolbar() {
-        textViewEmailInAppBar = (TextView) findViewById(R.id.textViewLoggedInEmail);
-        setEmailFromSharedPrefsInAppBar(textViewEmailInAppBar);
+        textViewAddCarLoggedInEmail = (TextView) findViewById(R.id.textViewAddCarLoggedInEmail);
+        setEmailFromSharedPrefsInAppBar(textViewAddCarLoggedInEmail);
 
-        buttonBack = (Button) findViewById(R.id.buttonBack);
-        buttonBack.setOnClickListener(new View.OnClickListener() {
+        buttonAddCarBack = (Button) findViewById(R.id.buttonAddCarBack);
+        buttonAddCarBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 finish();
@@ -97,16 +99,16 @@ public class AddCarActivity extends Activity {
     }
 
     private void initCarCounter() {
-        textViewCarsCount = (TextView) findViewById(R.id.textViewCarsCount);
+        textViewAddCarCarsCount = (TextView) findViewById(R.id.textViewAddCarCarsCount);
         updateViewForCarsCount();
     }
 
     private void initAddCarScrollView() {
-        scrollViewAddCar = (ScrollView) findViewById(R.id.scrollViewAddCar);
+        scrollViewAddCarListInputFiledsForCar = (ScrollView) findViewById(R.id.scrollViewAddCarListInputFiledsForCar);
     }
 
     private void initButtons() {
-        linearLayoutButtons = (LinearLayout) findViewById(R.id.linearLayoutButtons);
+        linearLayoutAddCarButtons = (LinearLayout) findViewById(R.id.linearLayoutAddCarButtons);
 
         initAddCarButton();
         initAddRandomCarsButton();
@@ -117,19 +119,19 @@ public class AddCarActivity extends Activity {
     }
 
     private void initAddCarButton() {
-        buttonAddCar = (Button) findViewById(R.id.buttonAddCar);
-        buttonAddCar.setOnClickListener(new View.OnClickListener() {
+        buttonAddCarAddCarFromInput = (Button) findViewById(R.id.buttonAddCarAddCarFromInput);
+        buttonAddCarAddCarFromInput.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                scrollViewAddCar.setVisibility(View.VISIBLE);
-                linearLayoutButtons.setVisibility(View.GONE);
+                scrollViewAddCarListInputFiledsForCar.setVisibility(View.VISIBLE);
+                linearLayoutAddCarButtons.setVisibility(View.GONE);
             }
         });
     }
 
     private void initButtonToLinearLayout() {
-        buttonGoToLinearLayout = (Button) findViewById(R.id.buttonGoToLinearLayout);
-        buttonGoToLinearLayout.setOnClickListener(new View.OnClickListener() {
+        buttonAddCarGoToLinearLayout = (Button) findViewById(R.id.buttonAddCarGoToLinearLayout);
+        buttonAddCarGoToLinearLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 navigateToLinearLayoutListCars();
@@ -143,8 +145,8 @@ public class AddCarActivity extends Activity {
     }
 
     private void initAddRandomCarsButton() {
-        buttonAddRandomCars = (Button) findViewById(R.id.buttonAddRandomCars);
-        buttonAddRandomCars.setOnClickListener(new View.OnClickListener() {
+        buttonAddCarAddRandomCars = (Button) findViewById(R.id.buttonAddCarAddRandomCars);
+        buttonAddCarAddRandomCars.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 generateRandomNumberOfCars();
@@ -154,8 +156,8 @@ public class AddCarActivity extends Activity {
     }
 
     private void initDeleteRandomCarButton() {
-        buttonDeleteRandomCar = (Button) findViewById(R.id.buttonDeleteRandomCar);
-        buttonDeleteRandomCar.setOnClickListener(new View.OnClickListener() {
+        buttonAddCarDeleteRandomCar = (Button) findViewById(R.id.buttonAddCarDeleteRandomCar);
+        buttonAddCarDeleteRandomCar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 deleteRandomCar();
@@ -166,23 +168,23 @@ public class AddCarActivity extends Activity {
     }
 
     private void initCarPropertiesEditTexts() {
-        editTextBrand = (EditText) findViewById(R.id.editTextBrand);
-        editTextModel = (EditText) findViewById(R.id.editTextModel);
-        editTextColour = (EditText) findViewById(R.id.editTextColour);
-        editTextDoorsCount = (EditText) findViewById(R.id.editTextDoorsCount);
+        editTextAddCarBrand = (EditText) findViewById(R.id.editTextAddCarBrand);
+        editTextAddCarModel = (EditText) findViewById(R.id.editTextAddCarModel);
+        editTextAddCarColour = (EditText) findViewById(R.id.editTextAddCarColour);
+        editTextAddCarDoorsCount = (EditText) findViewById(R.id.editTextAddCarDoorsCount);
     }
 
     private void initDateComponents() {
-        textViewShowSelectedYearOfManufacture = (TextView) findViewById(R.id.textViewShowSelectedYearOfManufacture);
-        displayCurrentYear(textViewShowSelectedYearOfManufacture);
+        textViewAddCarShowSelectedYearOfManufacture = (TextView) findViewById(R.id.textViewAddCarShowSelectedYearOfManufacture);
+        displayCurrentYear(textViewAddCarShowSelectedYearOfManufacture);
 
         initPickYearButton();
         initDialogYearPicker();
     }
 
     private void initPickYearButton() {
-        buttonSelectDateOfManufacture = (Button) findViewById(R.id.buttonSelectYearOfManufacture);
-        buttonSelectDateOfManufacture.setOnClickListener(new View.OnClickListener() {
+        buttonAddCarSelectYearOfManufacture = (Button) findViewById(R.id.buttonAddCarSelectYearOfManufacture);
+        buttonAddCarSelectYearOfManufacture.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 showDatePickerDialog();
@@ -191,13 +193,12 @@ public class AddCarActivity extends Activity {
     }
 
     private void initCreateNewCarButton() {
-        final String CAR_SAVED_SUCCESSFULLY = getResources().getString(R.string.car_saved_successfully);
-        buttonCreateNewCar = (Button) findViewById(R.id.buttonCreateNewCar);
-        buttonCreateNewCar.setOnClickListener(new View.OnClickListener() {
+        buttonAddCarCreateNewCar = (Button) findViewById(R.id.buttonAddCarCreateNewCar);
+        buttonAddCarCreateNewCar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 addCarToStorage();
-                Toast.makeText(AddCarActivity.this, CAR_SAVED_SUCCESSFULLY, Toast.LENGTH_LONG).show();
+                Toast.makeText(AddCarActivity.this, CAR_SAVED_SUCCESSFULLY_MESSAGE, Toast.LENGTH_LONG).show();
             }
         });
     }
@@ -205,8 +206,7 @@ public class AddCarActivity extends Activity {
     private void initDialogYearPicker() {
         final Dialog dialogYearPicker = new Dialog(AddCarActivity.this);
         dialogYearPicker.setContentView(R.layout.dialog_year_picker);
-        final String SELECT_YEAR_OF_MANUFACTURE = getResources().getString(R.string.select_year_of_manufacture);
-        dialogYearPicker.setTitle(SELECT_YEAR_OF_MANUFACTURE);
+        dialogYearPicker.setTitle(SELECT_YEAR_OF_MANUFACTURE_LABEL);
 
         final NumberPicker numberPickerYear = (NumberPicker) dialogYearPicker.findViewById(R.id.numberPickerYear);
         Calendar calendar = Calendar.getInstance();
@@ -219,7 +219,7 @@ public class AddCarActivity extends Activity {
             @Override
             public void onValueChange(NumberPicker picker, int oldVal, int newVal) {
                 yearOfManufacture = newVal;
-                displaySelectedYear(textViewShowSelectedYearOfManufacture, String.valueOf(newVal));
+                displaySelectedYear(textViewAddCarShowSelectedYearOfManufacture, String.valueOf(newVal));
             }
         });
 
@@ -272,11 +272,11 @@ public class AddCarActivity extends Activity {
     }
 
     private void addCarToStorage() {
-        String brand = editTextBrand.getText() != null ? editTextBrand.getText().toString() : null;
-        String model = editTextModel.getText() != null ? editTextModel.getText().toString() : null;
-        String colour = editTextColour.getText() != null ? editTextColour.getText().toString() : null;
-        int doorsCount = editTextDoorsCount.getText() != null && editTextDoorsCount.getText().length() > 0 ?
-                Integer.parseInt(editTextDoorsCount.getText().toString()) : 0;
+        String brand = editTextAddCarBrand.getText() != null ? editTextAddCarBrand.getText().toString() : null;
+        String model = editTextAddCarModel.getText() != null ? editTextAddCarModel.getText().toString() : null;
+        String colour = editTextAddCarColour.getText() != null ? editTextAddCarColour.getText().toString() : null;
+        int doorsCount = editTextAddCarDoorsCount.getText() != null && editTextAddCarDoorsCount.getText().length() > 0 ?
+                Integer.parseInt(editTextAddCarDoorsCount.getText().toString()) : 0;
 
         Car newCar = new CarBuilder()
                 .setBrand(brand)
@@ -337,7 +337,7 @@ public class AddCarActivity extends Activity {
     }
 
     private void updateViewForCarsCount() {
-        textViewCarsCount.setText(getCarsCountText());
+        textViewAddCarCarsCount.setText(getCarsCountText());
     }
 
     private void updateVisibilityOfViewComponents() {
@@ -348,29 +348,29 @@ public class AddCarActivity extends Activity {
     }
 
     private void showButtonsLayout() {
-        linearLayoutButtons.setVisibility(View.VISIBLE);
+        linearLayoutAddCarButtons.setVisibility(View.VISIBLE);
     }
 
     private void hideScrollView() {
-        scrollViewAddCar.setVisibility(View.GONE);
+        scrollViewAddCarListInputFiledsForCar.setVisibility(View.GONE);
     }
 
     private void updateVisibilityOfDeleteButton() {
         int carsCount = carsStorage.getCarsCount();
 
         if (carsCount == 0) {
-            buttonDeleteRandomCar.setVisibility(View.GONE);
+            buttonAddCarDeleteRandomCar.setVisibility(View.GONE);
         } else {
-            buttonDeleteRandomCar.setVisibility(View.VISIBLE);
+            buttonAddCarDeleteRandomCar.setVisibility(View.VISIBLE);
         }
     }
 
     private void updateVisibilityOfGoToLinearLayoutButton() {
         int carsCount = carsStorage.getCarsCount();
         if (carsCount < 10) {
-            buttonGoToLinearLayout.setVisibility(View.GONE);
+            buttonAddCarGoToLinearLayout.setVisibility(View.GONE);
         } else {
-            buttonGoToLinearLayout.setVisibility(View.VISIBLE);
+            buttonAddCarGoToLinearLayout.setVisibility(View.VISIBLE);
         }
     }
 }

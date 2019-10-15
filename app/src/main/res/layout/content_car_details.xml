@@ -14,7 +14,7 @@
         android:textColor="@color/colorBlack"/>
 
     <TextView
-        android:id="@+id/textViewColour"
+        android:id="@+id/textViewAddCarColour"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="5dp"
@@ -22,7 +22,7 @@
         android:textColor="@color/colorDarkGrey"/>
 
     <TextView
-        android:id="@+id/textViewDoorsCount"
+        android:id="@+id/textViewAddCarDoorsCount"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="5dp"

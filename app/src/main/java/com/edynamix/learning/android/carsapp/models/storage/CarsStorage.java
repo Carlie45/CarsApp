@@ -1,9 +1,10 @@
-package com.edynamix.learning.android.carsapp;
+package com.edynamix.learning.android.carsapp.models.storage;
 
 import android.app.Activity;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 
+import com.edynamix.learning.android.carsapp.models.car.Car;
 import com.edynamix.learning.android.carsapp.utils.Constants;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;

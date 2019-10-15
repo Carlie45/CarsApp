@@ -12,21 +12,21 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.edynamix.learning.android.carsapp.Car;
-import com.edynamix.learning.android.carsapp.CarDetailsView;
-import com.edynamix.learning.android.carsapp.CarsStorage;
+import com.edynamix.learning.android.carsapp.models.car.Car;
+import com.edynamix.learning.android.carsapp.views.CarDetailsView;
+import com.edynamix.learning.android.carsapp.models.storage.CarsStorage;
 import com.edynamix.learning.android.carsapp.R;
 import com.edynamix.learning.android.carsapp.utils.Constants;
 
 public class LinearLayoutActivity extends Activity {
 
-    private Button buttonBack;
-    private Button buttonListCarsAlternatively;
-    private Button buttonShowYearClose;
+    private Button buttonLinearLayoutBack;
+    private Button buttonLinearLayoutListCarsAlternatively;
+    private Button buttonShowYearDialogClose;
 
-    private LinearLayout linearLayoutListCars;
+    private LinearLayout linearLayoutLinearLayoutCarsDetails;
 
-    private TextView textViewEmailInAppBar;
+    private TextView textViewLinearLayoutLoggedInEmail;
 
     private Dialog dialogShowYearOfManufacture;
 
@@ -47,11 +47,11 @@ public class LinearLayoutActivity extends Activity {
     }
 
     private void initAppToolbar() {
-        textViewEmailInAppBar = (TextView) findViewById(R.id.textViewLoggedInEmail);
-        setEmailFromSharedPrefsInAppBar(textViewEmailInAppBar);
+        textViewLinearLayoutLoggedInEmail = (TextView) findViewById(R.id.textViewLinearLayoutLoggedInEmail);
+        setEmailFromSharedPrefsInAppBar(textViewLinearLayoutLoggedInEmail);
 
-        buttonBack = (Button) findViewById(R.id.buttonBack);
-        buttonBack.setOnClickListener(new View.OnClickListener() {
+        buttonLinearLayoutBack = (Button) findViewById(R.id.buttonLinearLayoutBack);
+        buttonLinearLayoutBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 finish();
@@ -60,8 +60,8 @@ public class LinearLayoutActivity extends Activity {
     }
 
     private void initButtonListCarsAlternatively() {
-        buttonListCarsAlternatively = (Button) findViewById(R.id.buttonListCarsAlternatively);
-        buttonListCarsAlternatively.setOnClickListener(new View.OnClickListener() {
+        buttonLinearLayoutListCarsAlternatively = (Button) findViewById(R.id.buttonLinearLayoutListCarsAlternatively);
+        buttonLinearLayoutListCarsAlternatively.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 navigateToListView();
@@ -81,7 +81,7 @@ public class LinearLayoutActivity extends Activity {
     }
 
     private void initLinearLayoutListCars() {
-        linearLayoutListCars = (LinearLayout) findViewById(R.id.linearLayoutCarsDetails);
+        linearLayoutLinearLayoutCarsDetails = (LinearLayout) findViewById(R.id.linearLayoutLinearLayoutCarsDetails);
         int carsCount = CarsStorage.carsList.size();
         for (int carIndex = 0; carIndex < carsCount; carIndex++) {
             Car car = CarsStorage.carsList.get(carIndex);
@@ -93,7 +93,7 @@ public class LinearLayoutActivity extends Activity {
                     showDialogWithYearOfManufacture(v);
                 }
             });
-            linearLayoutListCars.addView(carDetailsView);
+            linearLayoutLinearLayoutCarsDetails.addView(carDetailsView);
         }
     }
 
@@ -107,8 +107,8 @@ public class LinearLayoutActivity extends Activity {
     }
 
     private void initButtonShowYearInDialog() {
-        buttonShowYearClose = (Button) dialogShowYearOfManufacture.findViewById(R.id.buttonShowYearDialogClose);
-        buttonShowYearClose.setOnClickListener(new View.OnClickListener() {
+        buttonShowYearDialogClose = (Button) dialogShowYearOfManufacture.findViewById(R.id.buttonShowYearDialogClose);
+        buttonShowYearDialogClose.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 dialogShowYearOfManufacture.dismiss();

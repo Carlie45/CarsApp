@@ -16,9 +16,9 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import com.edynamix.learning.android.carsapp.Car;
-import com.edynamix.learning.android.carsapp.CarDetailsView;
-import com.edynamix.learning.android.carsapp.CarsStorage;
+import com.edynamix.learning.android.carsapp.models.car.Car;
+import com.edynamix.learning.android.carsapp.views.CarDetailsView;
+import com.edynamix.learning.android.carsapp.models.storage.CarsStorage;
 import com.edynamix.learning.android.carsapp.R;
 import com.edynamix.learning.android.carsapp.utils.Constants;
 
@@ -26,10 +26,10 @@ import java.util.List;
 
 public class ListViewActivity extends Activity {
 
-    private Button buttonBack;
+    private Button buttonListViewBack;
     private Button buttonShowYearClose;
 
-    private TextView textViewEmailInAppBar;
+    private TextView textViewListViewLoggedInEmail;
 
     private ListView listViewCars;
 
@@ -51,11 +51,11 @@ public class ListViewActivity extends Activity {
     }
 
     private void initAppToolbar() {
-        textViewEmailInAppBar = (TextView) findViewById(R.id.textViewLoggedInEmail);
-        setEmailFromSharedPrefsInAppBar(textViewEmailInAppBar);
+        textViewListViewLoggedInEmail = (TextView) findViewById(R.id.textViewListViewLoggedInEmail);
+        setEmailFromSharedPrefsInAppBar(textViewListViewLoggedInEmail);
 
-        buttonBack = (Button) findViewById(R.id.buttonBack);
-        buttonBack.setOnClickListener(new View.OnClickListener() {
+        buttonListViewBack = (Button) findViewById(R.id.buttonListViewBack);
+        buttonListViewBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 finish();
@@ -70,7 +70,7 @@ public class ListViewActivity extends Activity {
     }
 
     private void initListView() {
-        listViewCars = (ListView) findViewById(R.id.listViewCars);
+        listViewCars = (ListView) findViewById(R.id.listViewListViewCars);
         listViewCars.setAdapter(new CarAdapter(CarsStorage.carsList));
 
         listViewCars.setOnItemClickListener(new AdapterView.OnItemClickListener() {

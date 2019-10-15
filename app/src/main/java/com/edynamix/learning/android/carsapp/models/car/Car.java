@@ -1,4 +1,4 @@
-package com.edynamix.learning.android.carsapp;
+package com.edynamix.learning.android.carsapp.models.car;
 
 public class Car {
 

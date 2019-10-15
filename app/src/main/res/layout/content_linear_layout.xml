@@ -10,36 +10,36 @@
 
     <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
-        android:id="@+id/appToolbar"
+        android:id="@+id/relativeLayoutLinearLayoutAppToolbar"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:background="@color/colorDarkBlue">
 
         <Button
-            android:id="@+id/buttonBack"
+            android:id="@+id/buttonLinearLayoutBack"
             style="@style/ToolbarBackButton"/>
 
         <TextView
-            android:id="@+id/textViewLoggedInEmail"
+            android:id="@+id/textViewLinearLayoutLoggedInEmail"
             style="@style/ToolbarEmailTextView" />
 
     </RelativeLayout>
 
     <Button
-        android:id="@+id/buttonListCarsAlternatively"
+        android:id="@+id/buttonLinearLayoutListCarsAlternatively"
         style="@style/FullWidthButton"
         android:text="@string/list_cars_alternatively"
-        android:layout_below="@id/appToolbar"/>
+        android:layout_below="@id/relativeLayoutLinearLayoutAppToolbar"/>
 
     <ScrollView
-        android:id="@+id/scrollViewListCars"
+        android:id="@+id/scrollViewLinearLayoutListCars"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/buttonListCarsAlternatively"
+        android:layout_below="@id/buttonLinearLayoutListCarsAlternatively"
         android:fillViewport="false">
 
         <LinearLayout
-            android:id="@+id/linearLayoutCarsDetails"
+            android:id="@+id/linearLayoutLinearLayoutCarsDetails"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical"/>

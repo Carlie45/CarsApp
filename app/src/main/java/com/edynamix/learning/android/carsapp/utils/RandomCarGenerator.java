@@ -1,4 +1,7 @@
-package com.edynamix.learning.android.carsapp;
+package com.edynamix.learning.android.carsapp.utils;
+
+import com.edynamix.learning.android.carsapp.models.car.Car;
+import com.edynamix.learning.android.carsapp.models.car.CarBuilder;
 
 import java.util.Random;
 
