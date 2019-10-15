@@ -47,10 +47,10 @@ public class LinearLayoutActivity extends Activity {
     }
 
     private void initAppToolbar() {
-        textViewLinearLayoutLoggedInEmail = (TextView) findViewById(R.id.textViewLinearLayoutLoggedInEmail);
+        textViewLinearLayoutLoggedInEmail = (TextView) findViewById(R.id.textViewLoggedInEmail);
         setEmailFromSharedPrefsInAppBar(textViewLinearLayoutLoggedInEmail);
 
-        buttonLinearLayoutBack = (Button) findViewById(R.id.buttonLinearLayoutBack);
+        buttonLinearLayoutBack = (Button) findViewById(R.id.buttonBack);
         buttonLinearLayoutBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

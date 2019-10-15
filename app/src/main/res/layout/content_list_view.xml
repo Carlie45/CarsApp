@@ -8,27 +8,12 @@
     tools:context=".activities.ListViewActivity"
     tools:showIn="@layout/activity_list_view">
 
-    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:tools="http://schemas.android.com/tools"
-        android:id="@+id/relativeLayoutListViewAppToolbar"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:background="@color/colorDarkBlue">
-
-        <Button
-            android:id="@+id/buttonListViewBack"
-            style="@style/ToolbarBackButton"/>
-
-        <TextView
-            android:id="@+id/textViewListViewLoggedInEmail"
-            style="@style/ToolbarEmailTextView" />
-
-    </RelativeLayout>
+    <include layout="@layout/layout_toolbar"/>
 
     <ListView
         android:id="@+id/listViewListViewCars"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/relativeLayoutListViewAppToolbar"/>
+        android:layout_below="@id/appToolbar"/>
 
 </RelativeLayout>

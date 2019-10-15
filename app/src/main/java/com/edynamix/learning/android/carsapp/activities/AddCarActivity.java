@@ -86,10 +86,10 @@ public class AddCarActivity extends Activity {
     }
 
     private void initAppToolbar() {
-        textViewAddCarLoggedInEmail = (TextView) findViewById(R.id.textViewAddCarLoggedInEmail);
+        textViewAddCarLoggedInEmail = (TextView) findViewById(R.id.textViewLoggedInEmail);
         setEmailFromSharedPrefsInAppBar(textViewAddCarLoggedInEmail);
 
-        buttonAddCarBack = (Button) findViewById(R.id.buttonAddCarBack);
+        buttonAddCarBack = (Button) findViewById(R.id.buttonBack);
         buttonAddCarBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

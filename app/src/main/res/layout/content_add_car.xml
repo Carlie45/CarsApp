@@ -5,28 +5,13 @@
     android:layout_height="match_parent"
     tools:context="com.edynamix.learning.android.carsapp.activities.AddCarActivity">
 
-    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:tools="http://schemas.android.com/tools"
-        android:id="@+id/relativeLayoutAddCarAppToolbar"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:background="@color/colorDarkBlue">
-
-        <Button
-            android:id="@+id/buttonAddCarBack"
-            style="@style/ToolbarBackButton"/>
-
-        <TextView
-            android:id="@+id/textViewAddCarLoggedInEmail"
-            style="@style/ToolbarEmailTextView" />
-
-    </RelativeLayout>
+    <include layout="@layout/layout_toolbar"/>
 
     <TextView
         android:id="@+id/textViewAddCarCarsCount"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/relativeLayoutAddCarAppToolbar"
+        android:layout_below="@id/appToolbar"
         android:layout_margin="8dp"
         android:text="@string/cars_count"
         android:textSize="18dp"/>

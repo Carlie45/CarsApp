@@ -19,7 +19,7 @@ public class CarDetailsView extends LinearLayout {
         super(context);
         LayoutInflater inflater = (LayoutInflater) context
                 .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        inflater.inflate(R.layout.content_car_details, this, true);
+        inflater.inflate(R.layout.layout_car_details, this, true);
 
         TextView textViewBrandAndModel = (TextView) findViewById(R.id.textViewBrandAndModel);
         textViewBrandAndModel.setText(BRAND_AND_MODEL_LABEL + car.getBrand() + " " + car.getModel());

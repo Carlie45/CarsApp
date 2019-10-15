@@ -8,28 +8,13 @@
     tools:context=".activities.LinearLayoutActivity"
     tools:showIn="@layout/activity_linear_layout">
 
-    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:tools="http://schemas.android.com/tools"
-        android:id="@+id/relativeLayoutLinearLayoutAppToolbar"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:background="@color/colorDarkBlue">
-
-        <Button
-            android:id="@+id/buttonLinearLayoutBack"
-            style="@style/ToolbarBackButton"/>
-
-        <TextView
-            android:id="@+id/textViewLinearLayoutLoggedInEmail"
-            style="@style/ToolbarEmailTextView" />
-
-    </RelativeLayout>
+    <include layout="@layout/layout_toolbar"/>
 
     <Button
         android:id="@+id/buttonLinearLayoutListCarsAlternatively"
         style="@style/FullWidthButton"
         android:text="@string/list_cars_alternatively"
-        android:layout_below="@id/relativeLayoutLinearLayoutAppToolbar"/>
+        android:layout_below="@id/appToolbar"/>
 
     <ScrollView
         android:id="@+id/scrollViewLinearLayoutListCars"

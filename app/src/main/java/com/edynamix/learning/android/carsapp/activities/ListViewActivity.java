@@ -51,10 +51,10 @@ public class ListViewActivity extends Activity {
     }
 
     private void initAppToolbar() {
-        textViewListViewLoggedInEmail = (TextView) findViewById(R.id.textViewListViewLoggedInEmail);
+        textViewListViewLoggedInEmail = (TextView) findViewById(R.id.textViewLoggedInEmail);
         setEmailFromSharedPrefsInAppBar(textViewListViewLoggedInEmail);
 
-        buttonListViewBack = (Button) findViewById(R.id.buttonListViewBack);
+        buttonListViewBack = (Button) findViewById(R.id.buttonBack);
         buttonListViewBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
