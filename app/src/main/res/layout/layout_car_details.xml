@@ -1,33 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:layout_margin="10dp">
+    android:layout_margin="@dimen/normal_margin"
+    style="@style/FullWidth">
 
     <TextView
         android:id="@+id/textViewBrandAndModel"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="5dp"
-        android:textSize="20dp"
-        android:textColor="@color/colorBlack"/>
+        android:layout_margin="@dimen/normal_margin"
+        android:textSize="@dimen/normal_text_size"
+        android:textColor="@color/colorBlack"
+        style="@style/FullWidth"/>
 
     <TextView
         android:id="@+id/textViewAddCarColour"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="5dp"
-        android:textSize="18dp"
-        android:textColor="@color/colorDarkGrey"/>
+        android:layout_margin="@dimen/normal_margin"
+        android:textSize="@dimen/medium_text_size"
+        android:textColor="@color/colorDarkGrey"
+        style="@style/FullWidth"/>
 
     <TextView
         android:id="@+id/textViewAddCarDoorsCount"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="5dp"
-        android:textSize="16dp"
-        android:textColor="@color/colorDarkBlue"/>
+        android:layout_margin="@dimen/normal_margin"
+        android:textSize="@dimen/small_text_size"
+        android:textColor="@color/colorDarkBlue"
+        style="@style/FullWidth"/>
 
 
 </LinearLayout>

@@ -1,140 +1,121 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context="com.edynamix.learning.android.carsapp.activities.AddCarActivity">
+    tools:context="com.edynamix.learning.android.carsapp.activities.AddCarActivity"
+    style="@style/ParentLayout">
 
     <include layout="@layout/layout_toolbar"/>
 
     <TextView
         android:id="@+id/textViewAddCarCarsCount"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
         android:layout_below="@id/appToolbar"
-        android:layout_margin="8dp"
+        android:layout_margin="@dimen/normal_margin"
         android:text="@string/cars_count"
-        android:textSize="18dp"/>
+        android:textSize="@dimen/medium_text_size"
+        style="@style/FullWidth"/>
 
     <LinearLayout
         android:id="@+id/linearLayoutAddCarButtons"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
         android:layout_below="@id/textViewAddCarCarsCount"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        style="@style/FullWidth">
 
         <Button
             android:id="@+id/buttonAddCarAddCarFromInput"
-            style="@style/FullWidthButton"
-            android:text="@string/add_car_button_name"/>
+            android:text="@string/add_car_button_name"
+            style="@style/FullWidth.Button" />
 
         <Button
             android:id="@+id/buttonAddCarAddRandomCars"
-            style="@style/FullWidthButton"
-            android:text="@string/add_random_cars_button_name"/>
+            android:text="@string/add_random_cars_button_name"
+            style="@style/FullWidth.Button" />
 
         <Button
             android:id="@+id/buttonAddCarDeleteRandomCar"
-            style="@style/FullWidthButton"
-            android:text="@string/delete_random_car_button_name" />
+            android:text="@string/delete_random_car_button_name"
+            style="@style/FullWidth.Button" />
 
         <Button
             android:id="@+id/buttonAddCarGoToLinearLayout"
-            style="@style/FullWidthButton"
-            android:text="@string/list_cars"/>
+            android:text="@string/list_cars"
+            style="@style/FullWidth.Button" />
 
     </LinearLayout>
 
     <ScrollView
         android:id="@+id/scrollViewAddCarListInputFiledsForCar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
         android:layout_below="@id/linearLayoutAddCarButtons"
         android:visibility="gone"
-        android:fillViewport="false">
+        android:fillViewport="false"
+        style="@style/FullWidth">
 
         <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textSize="24dp"
-                android:text="@string/add_car_title"
-                android:textStyle="bold"
-                android:textColor="@color/colorBlack"
-                android:layout_marginTop="10dp"
-                android:layout_marginBottom="10dp"
-                android:layout_marginLeft="8dp"/>
+            android:orientation="vertical"
+            style="@style/FullWidth">
 
             <TextView
                 android:id="@+id/textViewAddCarBrand"
-                style="@style/AddCar"
-                android:text="@string/brand_label"/>
+                android:text="@string/brand_label"
+                style="@style/AddCarLabel"/>
 
             <EditText
                 android:id="@+id/editTextAddCarBrand"
                 android:hint="@string/brand_label"
-                style="@style/AddCar.AddCarEditText" />
+                style="@style/AddCarLabel.AddCarEditText" />
 
             <TextView
                 android:id="@+id/textViewAddCarModel"
-                style="@style/AddCar"
-                android:text="@string/model_label"/>
+                android:text="@string/model_label"
+                style="@style/AddCarLabel"/>
 
             <EditText
                 android:id="@+id/editTextAddCarModel"
                 android:hint="@string/model_label"
-                style="@style/AddCar.AddCarEditText" />
+                style="@style/AddCarLabel.AddCarEditText" />
 
             <TextView
                 android:id="@+id/textViewAddCarColour"
-                style="@style/AddCar"
-                android:text="@string/colour_label"/>
+                android:text="@string/colour_label"
+                style="@style/AddCarLabel"/>
 
             <EditText
                 android:id="@+id/editTextAddCarColour"
                 android:hint="@string/colour_label"
-                style="@style/AddCar.AddCarEditText" />
+                style="@style/AddCarLabel.AddCarEditText" />
 
             <TextView
                 android:id="@+id/textViewAddCarDoorsCount"
-                style="@style/AddCar"
-                android:text="@string/doors_count_label"/>
+                android:text="@string/doors_count_label"
+                style="@style/AddCarLabel"/>
 
             <EditText
                 android:id="@+id/editTextAddCarDoorsCount"
                 android:hint="@string/doors_count_label"
-                style="@style/AddCar.AddCarEditText"
-                android:inputType="number" />
+                android:inputType="number"
+                style="@style/AddCarLabel.AddCarEditText"/>
 
             <TextView
                 android:id="@+id/textViewAddCarDateOfManufacture"
-                style="@style/AddCar"
-                android:text="@string/date_of_manufacture_label"/>
+                android:text="@string/date_of_manufacture_label"
+                style="@style/AddCarLabel"/>
 
             <TextView
                 android:id="@+id/textViewAddCarShowSelectedYearOfManufacture"
-                style="@style/AddCar" />
+                style="@style/AddCarLabel" />
 
             <Button
                 android:id="@+id/buttonAddCarSelectYearOfManufacture"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_margin="8dp"
+                android:layout_margin="@dimen/normal_margin"
                 android:padding="8dp"
                 android:text="@string/pick_year"
                 android:background="@color/colorGrey"/>
 
             <Button
                 android:id="@+id/buttonAddCarCreateNewCar"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="5dp"
                 android:text="@string/create_new_car"
-                android:background="@color/colorLightBlue"/>
+                style="@style/FullWidth.Button"/>
 
         </LinearLayout>
 

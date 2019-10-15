@@ -2,32 +2,29 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context=".activities.LinearLayoutActivity"
-    tools:showIn="@layout/activity_linear_layout">
+    tools:showIn="@layout/activity_linear_layout"
+    style="@style/ParentLayout">
 
     <include layout="@layout/layout_toolbar"/>
 
     <Button
         android:id="@+id/buttonLinearLayoutListCarsAlternatively"
-        style="@style/FullWidthButton"
         android:text="@string/list_cars_alternatively"
-        android:layout_below="@id/appToolbar"/>
+        android:layout_below="@id/appToolbar"
+        style="@style/FullWidth.Button"/>
 
     <ScrollView
         android:id="@+id/scrollViewLinearLayoutListCars"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
         android:layout_below="@id/buttonLinearLayoutListCarsAlternatively"
-        android:fillViewport="false">
+        android:fillViewport="false"
+        style="@style/FullWidth">
 
         <LinearLayout
             android:id="@+id/linearLayoutLinearLayoutCarsDetails"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"/>
+            android:orientation="vertical"
+            style="@style/FullWidth"/>
 
     </ScrollView>
 

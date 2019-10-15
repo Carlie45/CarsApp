@@ -1,24 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-android:layout_width="wrap_content"
-android:layout_height="wrap_content"
-android:layout_centerInParent="true">
+    style="@style/DialogLayout">
 
     <TextView
         android:id="@+id/textViewDialogDisplayYearOfManufacture"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textSize="20dp"
+        android:textSize="@dimen/normal_text_size"
         android:layout_marginLeft="20dp"
         android:layout_marginTop="20dp"
         android:layout_marginBottom="20dp"
-        android:textColor="@color/colorBlack"/>
+        android:textColor="@color/colorBlack"
+        style="@style/FullWidth"/>
 
     <Button
         android:id="@+id/buttonShowYearDialogClose"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
         android:layout_below="@+id/textViewDialogDisplayYearOfManufacture"
-        android:text="@string/close_button_name" />
+        android:text="@string/close_button_name"
+        style="@style/FullWidth.Button"/>
 
 </RelativeLayout>

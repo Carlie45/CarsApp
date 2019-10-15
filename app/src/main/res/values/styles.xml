@@ -24,10 +24,26 @@
         <item name="android:ellipsize">end</item>
         <item name="android:singleLine">true</item>
         <item name="android:textColor">@color/colorWhite</item>
-        <item name="android:textSize">20dp</item>
+        <item name="android:textSize">@dimen/normal_text_size</item>
     </style>
 
-    <style name="LoginEditText">
+    <style name="ParentLayout">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+    </style>
+
+    <style name="DialogLayout">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_centerInParent">true</item>
+    </style>
+
+    <style name="FullWidth">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
+    <style name="LoginPageEditText">
         <item name="android:layout_marginTop">5dp</item>
         <item name="android:width">250dp</item>
         <item name="android:layout_width">wrap_content</item>
@@ -35,35 +51,35 @@
         <item name="android:textColor">@color/colorWhite</item>
     </style>
 
-    <style name="AddCar">
+    <style name="AddCarLabel">
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_width">wrap_content</item>
-        <item name="android:layout_margin">8dp</item>
-        <item name="android:textSize">20dp</item>
+        <item name="android:layout_margin">@dimen/normal_margin</item>
+        <item name="android:textSize">@dimen/normal_text_size</item>
         <item name="android:textColor">@color/colorBlack</item>
     </style>
 
-    <style name="AddCar.AddCarEditText">
+    <style name="AddCarLabel.AddCarEditText">
         <item name="android:layout_width">match_parent</item>
         <item name="android:textColorHint">@color/colorDarkGrey</item>
     </style>
 
-    <style name="FullWidthButton">
-        <item name="android:layout_height">wrap_content</item>
-        <item name="android:layout_width">match_parent</item>
-        <item name="android:layout_margin">3dp</item>
+    <style name="FullWidth.Button">
+        <item name="android:layout_margin">@dimen/normal_margin</item>
         <item name="android:background">@color/colorLightBlue</item>
         <item name="android:textColor">@color/colorBlack</item>
-        <item name="android:textSize">20dp</item>
+        <item name="android:textSize">@dimen/normal_text_size</item>
+    </style>
+
+    <style name="YearPickerDialogButton">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_weight">1</item>
     </style>
 
     <style name="AppTheme.NoActionBar">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
     </style>
-
-    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
-
-    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
 </resources>
