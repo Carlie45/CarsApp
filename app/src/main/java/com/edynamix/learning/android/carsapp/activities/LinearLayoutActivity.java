@@ -12,7 +12,6 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.edynamix.learning.android.carsapp.App;
 import com.edynamix.learning.android.carsapp.Car;
 import com.edynamix.learning.android.carsapp.CarDetailsView;
 import com.edynamix.learning.android.carsapp.CarsStorage;
@@ -100,7 +99,7 @@ public class LinearLayoutActivity extends Activity {
 
     private void initDialogWithYearOfManufacture() {
         final Dialog dialogShowYearOfManufacture = new Dialog(LinearLayoutActivity.this);
-        dialogShowYearOfManufacture.setContentView(R.layout.display_year_of_manufacture_dialog);
+        dialogShowYearOfManufacture.setContentView(R.layout.dialog_display_year_of_manufacture);
         this.dialogShowYearOfManufacture = dialogShowYearOfManufacture;
         this.dialogShowYearOfManufacture.setTitle(R.string.year_of_manufacture);
 

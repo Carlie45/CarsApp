@@ -84,7 +84,7 @@ public class ListViewActivity extends Activity {
 
     private void initDialogWithYearOfManufacture() {
         final Dialog dialogShowYearOfManufacture = new Dialog(ListViewActivity.this);
-        dialogShowYearOfManufacture.setContentView(R.layout.display_year_of_manufacture_dialog);
+        dialogShowYearOfManufacture.setContentView(R.layout.dialog_display_year_of_manufacture);
         this.dialogShowYearOfManufacture = dialogShowYearOfManufacture;
         this.dialogShowYearOfManufacture.setTitle(R.string.year_of_manufacture);
 

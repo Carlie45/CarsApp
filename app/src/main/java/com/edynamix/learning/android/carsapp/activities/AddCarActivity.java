@@ -204,7 +204,7 @@ public class AddCarActivity extends Activity {
 
     private void initDialogYearPicker() {
         final Dialog dialogYearPicker = new Dialog(AddCarActivity.this);
-        dialogYearPicker.setContentView(R.layout.year_picker_dialog);
+        dialogYearPicker.setContentView(R.layout.dialog_year_picker);
         final String SELECT_YEAR_OF_MANUFACTURE = getResources().getString(R.string.select_year_of_manufacture);
         dialogYearPicker.setTitle(SELECT_YEAR_OF_MANUFACTURE);
 

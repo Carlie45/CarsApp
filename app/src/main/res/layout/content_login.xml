@@ -2,7 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/background">
+    android:background="@drawable/img_background">
 
     <LinearLayout
         android:layout_width="wrap_content"
@@ -15,7 +15,7 @@
             android:layout_height="75dp"
             android:layout_margin="30dp"
             android:layout_gravity="center_horizontal"
-            android:background="@drawable/car_icon" />
+            android:background="@drawable/ic_car" />
 
         <EditText
             android:id="@+id/editTextEmail"
