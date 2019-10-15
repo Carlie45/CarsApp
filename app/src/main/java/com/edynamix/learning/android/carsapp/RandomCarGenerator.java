@@ -4,11 +4,11 @@ import java.util.Random;
 
 public class RandomCarGenerator {
 
-    private static String[] BRANDS = {"Audi", "BMW", "Toyota"};
-    private static String[] MODELS = {"A3", "X4", "G6"};
-    private static String[] COLOURS = {"red", "blue", "black"};
+    private static final String[] BRANDS = {"Audi", "BMW", "Toyota"};
+    private static final String[] MODELS = {"A3", "X4", "G6"};
+    private static final String[] COLOURS = {"red", "blue", "black"};
 
-    private static Random rand = new Random();
+    private static final Random rand = new Random();
 
     public static Car getRandomCar() {
         int brandIndex = rand.nextInt(BRANDS.length);

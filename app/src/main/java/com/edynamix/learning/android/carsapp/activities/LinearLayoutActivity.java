@@ -12,6 +12,7 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.edynamix.learning.android.carsapp.App;
 import com.edynamix.learning.android.carsapp.Car;
 import com.edynamix.learning.android.carsapp.CarDetailsView;
 import com.edynamix.learning.android.carsapp.CarsStorage;
@@ -30,20 +31,13 @@ public class LinearLayoutActivity extends Activity {
 
     private Dialog dialogShowYearOfManufacture;
 
-    private String YEAR_LABEL;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
         setContentView(R.layout.activity_linear_layout);
 
-        initStrings();
         initViews();
-    }
-
-    private void initStrings() {
-        YEAR_LABEL = getResources().getString(R.string.year) + " ";
     }
 
     private void initViews() {
@@ -127,7 +121,7 @@ public class LinearLayoutActivity extends Activity {
         int carIndex = (int) view.getTag();
 
         TextView textViewYearOfManufacture = (TextView) dialogShowYearOfManufacture.findViewById(R.id.textViewDialogDisplayYearOfManufacture);
-        textViewYearOfManufacture.setText(YEAR_LABEL + CarsStorage.carsList.get(carIndex).getYearOfManufacture());
+        textViewYearOfManufacture.setText(Constants.YEAR_LABEL + CarsStorage.carsList.get(carIndex).getYearOfManufacture());
 
         dialogShowYearOfManufacture.show();
     }

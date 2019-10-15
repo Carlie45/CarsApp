@@ -16,6 +16,7 @@ import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.edynamix.learning.android.carsapp.App;
 import com.edynamix.learning.android.carsapp.Car;
 import com.edynamix.learning.android.carsapp.CarBuilder;
 import com.edynamix.learning.android.carsapp.CarsStorage;
@@ -53,8 +54,9 @@ public class AddCarActivity extends Activity {
     private int yearOfManufacture;
     private Dialog dialogYearPicker;
 
-    private String CARS_COUNT_LABEL;
-    private String NO_CARS_TO_REMOVE_MESSAGE;
+    private static final String SELECTED_YEAR = App.getRes().getString(R.string.selected_year) + " ";
+    private static final String CARS_COUNT_LABEL = App.getRes().getString(R.string.cars_count) + " ";
+    private static final String NO_CARS_TO_REMOVE_MESSAGE = App.getRes().getString(R.string.no_cars_to_remove);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,14 +64,8 @@ public class AddCarActivity extends Activity {
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
         setContentView(R.layout.activity_add_car);
 
-        initStrings();
         initCarsStorage();
         initViews();
-    }
-
-    private void initStrings() {
-        CARS_COUNT_LABEL = getResources().getString(R.string.cars_count) + " ";
-        NO_CARS_TO_REMOVE_MESSAGE = getResources().getString(R.string.no_cars_to_remove);
     }
 
     private void initCarsStorage() {
@@ -253,7 +249,6 @@ public class AddCarActivity extends Activity {
 
     private void displayCurrentYear(TextView textView) {
         StringBuilder formattedDate = new StringBuilder();
-        final String SELECTED_YEAR = getResources().getString(R.string.selected_year) + " ";
         formattedDate.append(SELECTED_YEAR);
 
         Calendar calendar = Calendar.getInstance();
@@ -266,7 +261,6 @@ public class AddCarActivity extends Activity {
 
     private void displaySelectedYear(TextView textView, String dateAsString) {
         StringBuilder formattedDate = new StringBuilder();
-        final String SELECTED_YEAR = getResources().getString(R.string.selected_year) + " ";
         formattedDate.append(SELECTED_YEAR);
         formattedDate.append(dateAsString);
 

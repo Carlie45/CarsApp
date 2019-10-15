@@ -1,6 +1,5 @@
 package com.edynamix.learning.android.carsapp;
 
-import android.app.Activity;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.widget.LinearLayout;
@@ -8,17 +7,13 @@ import android.widget.TextView;
 
 public class CarDetailsView extends LinearLayout {
 
-    private String BRAND_AND_MODEL_LABEL;
-    private String COLOUR_LABEL;
-    private String DOORS_COUNT_LABEL;
+    private static final String BRAND_AND_MODEL_LABEL = App.getRes().getString(R.string.brand_and_model) + " ";
+    private static final String COLOUR_LABEL = App.getRes().getString(R.string.colour_label) + " ";
+    private static final String DOORS_COUNT_LABEL = App.getRes().getString(R.string.doors_count_label) + ": ";
 
-    public CarDetailsView(Activity parentActivity, Car car) {
-        super(parentActivity.getApplicationContext());
-        BRAND_AND_MODEL_LABEL = parentActivity.getResources().getString(R.string.brand_and_model) + " ";
-        COLOUR_LABEL = parentActivity.getResources().getString(R.string.colour_label) + ": ";
-        DOORS_COUNT_LABEL = parentActivity.getResources().getString(R.string.doors_count_label) + ": ";
-
-        LayoutInflater inflater = (LayoutInflater) parentActivity.getApplicationContext()
+    public CarDetailsView(Context context, Car car) {
+        super(context);
+        LayoutInflater inflater = (LayoutInflater) context
                 .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         inflater.inflate(R.layout.car_details, this, true);
 

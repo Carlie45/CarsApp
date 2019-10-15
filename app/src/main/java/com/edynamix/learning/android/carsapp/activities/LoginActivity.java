@@ -12,6 +12,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
+import com.edynamix.learning.android.carsapp.App;
 import com.edynamix.learning.android.carsapp.R;
 import com.edynamix.learning.android.carsapp.exceptions.IllegalCredentialsException;
 import com.edynamix.learning.android.carsapp.utils.Constants;
@@ -24,8 +25,8 @@ public class LoginActivity extends Activity {
     private EditText editTextPassword;
     private Button loginButton;
 
-    private String PLEASE_ENTER_EMAIL_MESSAGE;
-    private String PLEASE_ENTER_PASSWORD_MESSAGE;
+    private static final String PLEASE_ENTER_EMAIL_MESSAGE = App.getRes().getString(R.string.please_enter_email);
+    private static final String PLEASE_ENTER_PASSWORD_MESSAGE = App.getRes().getString(R.string.please_enter_password);
 
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
@@ -33,13 +34,7 @@ public class LoginActivity extends Activity {
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
         setContentView(R.layout.activity_login);
 
-        initStrings();
         initViews();
-    }
-
-    private void initStrings() {
-        PLEASE_ENTER_EMAIL_MESSAGE = getResources().getString(R.string.please_enter_email);
-        PLEASE_ENTER_PASSWORD_MESSAGE = getResources().getString(R.string.please_enter_password);
     }
 
     private void initViews() {
@@ -63,7 +58,7 @@ public class LoginActivity extends Activity {
                     navigateToAddCarActivity();
                 } catch (IllegalCredentialsException ice) {
                     AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(LoginActivity.this);
-                    ErrorDialogCreator.createDialog(getResources(), alertDialogBuilder, ice.getMessage());
+                    ErrorDialogCreator.createDialog(alertDialogBuilder, ice.getMessage());
                 }
             }
         });
@@ -79,13 +74,12 @@ public class LoginActivity extends Activity {
             throw new IllegalCredentialsException(PLEASE_ENTER_EMAIL_MESSAGE);
         }
 
-        LoginDataValidator validator = new LoginDataValidator(getResources());
-        validator.validateEmail(emailTextFromInput.toString());
+        LoginDataValidator.validateEmail(emailTextFromInput.toString());
 
         if (passwordTextFromInput == null || passwordTextFromInput.equals(Constants.EMPTY_VALUE)) {
             throw new IllegalCredentialsException(PLEASE_ENTER_PASSWORD_MESSAGE);
         }
-        validator.validatePassword(passwordTextFromInput.toString());
+        LoginDataValidator.validatePassword(passwordTextFromInput.toString());
     }
 
     private void saveCredentialsToSharedPreferences(String email, String password) {
