@@ -2,7 +2,6 @@ package com.edynamix.learning.android.carsapp.utils;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
-import android.content.res.Resources;
 import android.widget.Button;
 
 import com.edynamix.learning.android.carsapp.App;
@@ -13,7 +12,7 @@ public class ErrorDialogCreator {
     private static final String LOGIN_ERROR_DIALOG_TITLE = App.getRes().getString(R.string.login_error_title);
     private static final String CLOSE_BUTTON_NAME = App.getRes().getString(R.string.close_button_name);
 
-    private static final int NEUTRAL_BUTTON_BACKGROUND_COLOUR_GREY = App.getRes().getColor(R.color.colorGrey);
+    private static final int NEUTRAL_BUTTON_BACKGROUND_COLOUR_GREY = App.getRes().getColor(R.color.colorLightGrey);
     private static final int NEUTRAL_BUTTON_TEXT_COLOUR_BLACK = App.getRes().getColor(R.color.colorBlack);
 
     public static void createDialog(AlertDialog.Builder alertDialogBuilder, String errorMessage) {

@@ -25,5 +25,4 @@
         android:textColor="@color/colorDarkBlue"
         style="@style/FullWidth"/>
 
-
 </LinearLayout>

@@ -110,7 +110,7 @@
                 android:layout_margin="@dimen/normal_margin"
                 android:padding="8dp"
                 android:text="@string/pick_year"
-                android:background="@color/colorGrey"/>
+                android:background="@color/colorLightGrey"/>
 
             <Button
                 android:id="@+id/buttonAddCarCreateNewCar"

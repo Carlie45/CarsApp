@@ -61,11 +61,11 @@
 
     <style name="AddCarLabel.AddCarEditText">
         <item name="android:layout_width">match_parent</item>
-        <item name="android:textColorHint">@color/colorDarkGrey</item>
+        <item name="android:textColorHint">@color/colorGrey</item>
     </style>
 
     <style name="FullWidth.Button">
-        <item name="android:layout_margin">@dimen/normal_margin</item>
+        <item name="android:layout_margin">@dimen/half_normal_margin</item>
         <item name="android:background">@color/colorLightBlue</item>
         <item name="android:textColor">@color/colorBlack</item>
         <item name="android:textSize">@dimen/normal_text_size</item>
