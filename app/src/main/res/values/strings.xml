@@ -26,4 +26,17 @@
     <string name="select_button_name">Select</string>
     <string name="year_of_manufacture">Year of Manufacture</string>
     <string name="year">Year: </string>
+    <string name="car_saved_successfully">The car was saved successfully.</string>
+    <string name="select_year_of_manufacture">Select year of manufacture</string>
+    <string name="selected_year">Selected Year: </string>
+    <string name="no_cars_to_remove">No cars to remove.</string>
+    <string name="please_enter_email">Please enter an e-mail.</string>
+    <string name="please_enter_password">Please enter a password.</string>
+    <string name="email_too_long">The email is too long. Max permitted value is</string>
+    <string name="email_not_valid">The e-mail is not valid.</string>
+    <string name="password_must_be_at_least_ten_characters_long">The password must be at least 10 characters long.</string>
+    <string name="password_is_too_long">The password is too long. Max permitted value is </string>
+    <string name="password_does_not_contain_digit">The password does not contain a digit. </string>
+    <string name="password_does_not_contain_letter">The password does not contain a letter. </string>
+    <string name="password_does_not_contain_spec_char">The password does not contain a special character. </string>
 </resources>

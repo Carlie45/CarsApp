@@ -53,14 +53,23 @@ public class AddCarActivity extends Activity {
     private int yearOfManufacture;
     private Dialog dialogYearPicker;
 
+    private String CARS_COUNT;
+    private String NO_CARS_TO_REMOVE;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
         setContentView(R.layout.activity_add_car);
 
+        initStrings();
         initCarsStorage();
         initViews();
+    }
+
+    private void initStrings() {
+        CARS_COUNT = getResources().getString(R.string.cars_count);
+        NO_CARS_TO_REMOVE = getResources().getString(R.string.no_cars_to_remove);
     }
 
     private void initCarsStorage() {
@@ -186,12 +195,13 @@ public class AddCarActivity extends Activity {
     }
 
     private void initCreateNewCarButton() {
+        final String CAR_SAVED_SUCCESSFULLY = getResources().getString(R.string.car_saved_successfully);
         buttonCreateNewCar = (Button) findViewById(R.id.buttonCreateNewCar);
         buttonCreateNewCar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 addCarToStorage();
-                Toast.makeText(AddCarActivity.this, "The car was saved successfully.", Toast.LENGTH_LONG).show();
+                Toast.makeText(AddCarActivity.this, CAR_SAVED_SUCCESSFULLY, Toast.LENGTH_LONG).show();
             }
         });
     }
@@ -199,7 +209,8 @@ public class AddCarActivity extends Activity {
     private void initDialogYearPicker() {
         final Dialog dialogYearPicker = new Dialog(AddCarActivity.this);
         dialogYearPicker.setContentView(R.layout.year_picker_dialog);
-        dialogYearPicker.setTitle("Select year of manufacture");
+        final String SELECT_YEAR_OF_MANUFACTURE = getResources().getString(R.string.select_year_of_manufacture);
+        dialogYearPicker.setTitle(SELECT_YEAR_OF_MANUFACTURE);
 
         final NumberPicker numberPickerYear = (NumberPicker) dialogYearPicker.findViewById(R.id.numberPickerYear);
         Calendar calendar = Calendar.getInstance();
@@ -242,7 +253,8 @@ public class AddCarActivity extends Activity {
 
     private void displayCurrentYear(TextView textView) {
         StringBuilder formattedDate = new StringBuilder();
-        formattedDate.append("Selected Year: ");
+        final String SELECTED_YEAR = getResources().getString(R.string.selected_year);
+        formattedDate.append(SELECTED_YEAR);
 
         Calendar calendar = Calendar.getInstance();
         int year = calendar.get(Calendar.YEAR);
@@ -254,7 +266,8 @@ public class AddCarActivity extends Activity {
 
     private void displaySelectedYear(TextView textView, String dateAsString) {
         StringBuilder formattedDate = new StringBuilder();
-        formattedDate.append("Selected Year: ");
+        final String SELECTED_YEAR = getResources().getString(R.string.selected_year);
+        formattedDate.append(SELECTED_YEAR);
         formattedDate.append(dateAsString);
 
         textView.setText(formattedDate.toString());
@@ -295,7 +308,7 @@ public class AddCarActivity extends Activity {
     }
 
     private String getCarsCountText() {
-        return getResources().getString(R.string.cars_count) + carsStorage.getCarsCount();
+        return CARS_COUNT + carsStorage.getCarsCount();
     }
 
     private void displayToastWithGeneratedNumberOfCars(int countOfCarsGenerated) {
@@ -318,7 +331,7 @@ public class AddCarActivity extends Activity {
         int carsCount = carsStorage.getCarsCount();
         if (carsCount <= 0) {
             // Nothing to remove.
-            Toast.makeText(this, "No cars to remove.", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, NO_CARS_TO_REMOVE, Toast.LENGTH_SHORT).show();
             return;
         }
 

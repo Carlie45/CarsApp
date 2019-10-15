@@ -103,6 +103,7 @@
 
             <EditText
                 android:id="@+id/editTextBrand"
+                android:hint="@string/brand_label"
                 style="@style/AddCar.AddCarEditText" />
 
             <TextView
@@ -112,6 +113,7 @@
 
             <EditText
                 android:id="@+id/editTextModel"
+                android:hint="@string/model_label"
                 style="@style/AddCar.AddCarEditText" />
 
             <TextView
@@ -121,6 +123,7 @@
 
             <EditText
                 android:id="@+id/editTextColour"
+                android:hint="@string/colour_label"
                 style="@style/AddCar.AddCarEditText" />
 
             <TextView
@@ -130,6 +133,7 @@
 
             <EditText
                 android:id="@+id/editTextDoorsCount"
+                android:hint="@string/doors_count_label"
                 style="@style/AddCar.AddCarEditText"
                 android:inputType="number" />
 

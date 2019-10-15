@@ -24,12 +24,22 @@ public class LoginActivity extends Activity {
     private EditText editTextPassword;
     private Button loginButton;
 
+    private String PLEASE_ENTER_EMAIL_MESSAGE;
+    private String PLEASE_ENTER_PASSWORD_MESSAGE;
+
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
         setContentView(R.layout.activity_login);
+
+        initStrings();
         initViews();
+    }
+
+    private void initStrings() {
+        PLEASE_ENTER_EMAIL_MESSAGE = getResources().getString(R.string.please_enter_email);
+        PLEASE_ENTER_PASSWORD_MESSAGE = getResources().getString(R.string.please_enter_password);
     }
 
     private void initViews() {
@@ -65,15 +75,17 @@ public class LoginActivity extends Activity {
     }
 
     private void checkCredentials(Editable emailTextFromInput, Editable passwordTextFromInput) throws IllegalCredentialsException {
-        if (emailTextFromInput == null || emailTextFromInput.equals("")) {
-            throw new IllegalCredentialsException("Please enter an e-mail.");
+        if (emailTextFromInput == null || emailTextFromInput.equals(Constants.EMPTY_VALUE)) {
+            throw new IllegalCredentialsException(PLEASE_ENTER_EMAIL_MESSAGE);
         }
-        LoginDataValidator.validateEmail(emailTextFromInput.toString());
 
-        if (passwordTextFromInput == null || passwordTextFromInput.equals("")) {
-            throw new IllegalCredentialsException("Please enter a password.");
+        LoginDataValidator validator = new LoginDataValidator(getResources());
+        validator.validateEmail(emailTextFromInput.toString());
+
+        if (passwordTextFromInput == null || passwordTextFromInput.equals(Constants.EMPTY_VALUE)) {
+            throw new IllegalCredentialsException(PLEASE_ENTER_PASSWORD_MESSAGE);
         }
-        LoginDataValidator.validatePassword(passwordTextFromInput.toString());
+        validator.validatePassword(passwordTextFromInput.toString());
     }
 
     private void saveCredentialsToSharedPreferences(String email, String password) {
